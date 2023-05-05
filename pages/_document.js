@@ -1,6 +1,7 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import { createGetInitialProps } from '@mantine/next';
 
-export default function Document() {
+function Document() {
   return (
     <Html lang="ru">
       <Head />
@@ -11,3 +12,7 @@ export default function Document() {
     </Html>
   );
 }
+
+Document.getInitialProps = createGetInitialProps();
+
+export default Document;
