@@ -7,7 +7,7 @@ const themeOverrides = {
   black: '#232134',
   colors: {
     gray: [
-      '#F5F5F6',
+      '#F7F7F8',
       '#EAEBED',
       '#D5D6DC',
       '#ACADB9',
