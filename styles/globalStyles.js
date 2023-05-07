@@ -10,6 +10,11 @@ const globalStyles = theme => ({
     overflowX: 'hidden',
     backgroundColor: theme.colors.gray[0],
   },
+
+  a: {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
 });
 
 export default globalStyles;
