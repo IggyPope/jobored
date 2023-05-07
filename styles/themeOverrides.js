@@ -1,4 +1,4 @@
-import { rem } from '@mantine/core';
+import { rem, em } from '@mantine/core';
 import globalStyles from './globalStyles';
 
 const themeOverrides = {
@@ -63,11 +63,11 @@ const themeOverrides = {
   },
 
   breakpoints: {
-    xs: '36em',
-    sm: '48em',
-    md: '62em',
-    lg: '75em',
-    xl: '88em',
+    xs: em(576),
+    sm: em(768),
+    md: em(992),
+    lg: em(1200),
+    xl: em(1408),
   },
 
   other: {},
