@@ -80,6 +80,8 @@ const themeOverrides = {
         h2: { fontSize: rem(24), lineHeight: 1.2, fontWeight: 700 },
         h3: { fontSize: rem(20), lineHeight: 1.2, fontWeight: 600 },
         h4: { fontSize: rem(16), lineHeight: 1.2, fontWeight: 700 },
+        h5: { fontSize: rem(14), lineHeight: 1.2, fontWeight: 600 },
+        h6: { fontSize: rem(12), lineHeight: 1.2, fontWeight: 600 },
       },
     },
     Container: {
