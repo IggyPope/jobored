@@ -12,6 +12,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import routes from '@/constants/routes';
+import Logo from '../Logo/Logo';
 
 const useStyles = createStyles(theme => ({
   header: {
@@ -75,10 +76,10 @@ export default function Header() {
 
   return (
     <header className={classes.header}>
-      <Container size={1160} px={22} h="100%">
+      <Container size="lg" px="lg" h="100%">
         <Flex h="100%" justify={'space-between'} align={'center'}>
           <Link href="/">
-            <Image src={'./logo.svg'} alt="site logo" width={141} height={36} />
+            <Logo />
           </Link>
           <Flex
             justify={'space-between'}
@@ -99,12 +100,12 @@ export default function Header() {
               );
             })}
           </Flex>
+          <div className={classes.placeholder}></div>
           <Burger
             opened={burgerOpened}
             onClick={toggle}
             className={classes.burger}
           />
-          <div className={classes.placeholder}></div>
         </Flex>
       </Container>
       <Drawer

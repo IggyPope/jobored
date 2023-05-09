@@ -82,6 +82,17 @@ const themeOverrides = {
         h4: { fontSize: rem(16), lineHeight: 1.2, fontWeight: 700 },
       },
     },
+    Container: {
+      defaultProps: {
+        sizes: {
+          xs: 371,
+          sm: 720,
+          md: 817,
+          lg: 1160,
+          xl: 1320,
+        },
+      },
+    },
   },
   activeStyles: { transform: 'translateY(0.0625rem)' },
   datesLocale: 'ru',
