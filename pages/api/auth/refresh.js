@@ -14,3 +14,9 @@ export default async function handler(req, res) {
     })
     .then(response => res.status(response.status).json(response.data));
 }
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
+};
