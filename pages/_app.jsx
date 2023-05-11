@@ -2,6 +2,12 @@ import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
 import themeOverrides from '@/styles/themeOverrides';
 import MainLayout from '@/components/Layout/MainLayout';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  preload: true,
+});
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,7 +21,14 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <MantineProvider theme={themeOverrides} withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        theme={{
+          fontFamily: inter.style.fontFamily,
+          ...themeOverrides,
+        }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
         <MainLayout>
           <Component {...pageProps} />
         </MainLayout>
