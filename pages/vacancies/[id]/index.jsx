@@ -13,11 +13,11 @@ export default function Vacancy() {
 
   useEffect(() => {
     setIsLoading(true);
-    if (!router.isReady) return;
-    clientInstance
-      .get(`/expiredtest?id=${router.query.id}`)
-      .then(res => setVacancy(res.data))
-      .finally(() => setIsLoading(false));
+    router.isReady &&
+      clientInstance
+        .get(`/vacancies/getOneById?id=${router.query.id}`)
+        .then(res => setVacancy(res.data))
+        .finally(() => setIsLoading(false));
   }, [router]);
 
   return (
