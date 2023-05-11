@@ -6,7 +6,6 @@ const API_CLIENT_ID = process.env.API_CLIENT_ID;
 const API_CLIENT_SECRET = process.env.API_CLIENT_SECRET;
 
 export default async function handler(req, res) {
-  console.log('entering password.js');
   serverInstance
     .get('oauth2/password/', {
       params: {
@@ -17,8 +16,5 @@ export default async function handler(req, res) {
         hr: 0,
       },
     })
-    .then(response => {
-      console.log('response: ', response);
-      res.status(response.status).json(response.data);
-    });
+    .then(response => res.status(response.status).json(response.data));
 }

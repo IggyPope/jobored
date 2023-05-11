@@ -12,7 +12,5 @@ export default async function handler(req, res) {
         client_secret: API_CLIENT_SECRET,
       },
     })
-    .then(response => {
-      res.status(response.status).json(response.data);
-    });
+    .then(response => res.status(response.status).json(response.data));
 }
