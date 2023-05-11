@@ -15,7 +15,7 @@ export default function Vacancy() {
     setIsLoading(true);
     if (!router.isReady) return;
     clientInstance
-      .get(`/expiredtest/?id=${router.query.id}`)
+      .get(`/expiredtest?id=${router.query.id}`)
       .then(res => setVacancy(res.data))
       .finally(() => setIsLoading(false));
   }, [router]);
