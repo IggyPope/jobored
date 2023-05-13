@@ -23,7 +23,7 @@ export default function VacancyHead({ vacancy }) {
           <StarIcon />
         </Flex>
         <Flex direction={'row'} justify={'flex-start'} gap="xs" wrap={'wrap'}>
-          <Text span inline fw={700}>
+          <Text span inline fw={700} fz="md">
             з/п
             {!vacancy.payment_from && !vacancy.payment_to
               ? ' по договорённости'
@@ -31,14 +31,20 @@ export default function VacancyHead({ vacancy }) {
                 (vacancy.payment_to && ` до ${vacancy.payment_to}`) +
                 (vacancy.currency && ` ${vacancy.currency}`)}
           </Text>
-          <Text span inline c="gray.4" lh={'21px'}>
+          <Text span inline c="gray.4" lh={'21px'} fz="md">
             •
           </Text>
-          <Text span inline>
+          <Text span inline fz="md">
             {vacancy.type_of_work['title'] && vacancy.type_of_work['title']}
           </Text>
         </Flex>
-        <Flex direction={'row'} justify={'flex-start'} gap={8} wrap={'wrap'}>
+        <Flex
+          direction={'row'}
+          justify={'flex-start'}
+          align={'center'}
+          gap={8}
+          wrap={'wrap'}
+        >
           <LocationIcon />
           <Text span inline>
             {vacancy.town['title']}

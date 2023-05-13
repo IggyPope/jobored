@@ -8,6 +8,7 @@ export default function StarIcon() {
 
   return (
     <ActionIcon
+      variant="transparent"
       onMouseOver={() => setState(starState.hover)}
       onMouseOut={() => setState(starState.default)}
     >
