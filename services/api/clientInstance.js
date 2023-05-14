@@ -36,7 +36,7 @@ clientInstance.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
-    console.log(`Client instance intercepted response error: \n ${error}`);
+
     if (error.response.status === 410 && !originalRequest._retry) {
       // API will respond with a 410 status code if the access_token expired
 

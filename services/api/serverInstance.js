@@ -18,21 +18,4 @@ const serverInstance = axios.create({
   maxRedirects: 10,
 });
 
-serverInstance.interceptors.request.use(
-  config => {
-    console.log(
-      `Server instance intercepted request config: \n ${JSON.stringify(config)}`
-    );
-    return config;
-  },
-  error => Promise.reject(error)
-);
-
-serverInstance.interceptors.response.use(
-  response => response,
-  async error => {
-    console.log(`Server instance intercepted response error: \n ${error}`);
-  }
-);
-
 export default serverInstance;

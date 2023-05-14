@@ -16,7 +16,6 @@ const authApiService = {
   },
 
   refreshAccessToken: async () => {
-    console.log('Entered refreshAccessToken');
     try {
       let refreshToken = authStorageService.getRefreshToken();
 
