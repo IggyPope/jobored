@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { Container, Flex, Paper, Stack } from '@mantine/core';
+import { Container, Stack } from '@mantine/core';
 
-import clientInstance from '@/services/api/clientInstance';
 import VacancyHead from '@/components/VacancyHead/VacancyHead';
 import VacancyBody from '@/components/VacancyBody/VacancyBody';
+
+import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
 
 export default function Vacancy() {
   const router = useRouter();
@@ -18,9 +19,9 @@ export default function Vacancy() {
   useEffect(() => {
     setIsLoading(true);
     router.isReady &&
-      clientInstance
-        .get(`/vacancies/getOneById?id=${router.query.id}`)
-        .then(res => setVacancy(res.data))
+      vacanciesApiService
+        .getOneById(router.query.id)
+        .then(res => setVacancy(res))
         .finally(() => setIsLoading(false));
   }, [router]);
 

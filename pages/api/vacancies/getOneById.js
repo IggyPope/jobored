@@ -7,12 +7,13 @@ export default async function handler(req, res) {
   serverInstance
     .get(`vacancies/${req.query.id}/`, {
       headers: {
-        Authorization: req.headers['authorization'],
-        'X-Api-App-Id': CLIENT_SECRET,
-        'x-secret-key': X_SECRET_KEY,
+        common: {
+          Authorization: req.headers['authorization'],
+          'X-Api-App-Id': CLIENT_SECRET,
+        },
       },
     })
-    .then(response => res.status(response.status).send(response.data));
+    .then(response => res.status(response.status).json(response.data));
 }
 
 export const config = {
