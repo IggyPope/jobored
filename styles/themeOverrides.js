@@ -69,16 +69,18 @@ const themeOverrides = {
     xl: em(1408),
   },
 
-  other: {},
+  other: {
+    hoverColor: '#92C1FF',
+  },
   headings: {
     fontWeight: 700,
     sizes: {
       h1: { fontSize: rem(28), lineHeight: 1.215, fontWeight: 700 },
       h2: { fontSize: rem(24), lineHeight: 1.2, fontWeight: 700 },
-      h3: { fontSize: rem(20), lineHeight: 1.2, fontWeight: 600 },
-      h4: { fontSize: rem(16), lineHeight: 1.2, fontWeight: 700 },
-      h5: { fontSize: rem(14), lineHeight: 1.2, fontWeight: 600 },
-      h6: { fontSize: rem(12), lineHeight: 1.2, fontWeight: 600 },
+      h3: { fontSize: rem(20), lineHeight: 1, fontWeight: 700 },
+      h4: { fontSize: rem(20), lineHeight: 1.2, fontWeight: 600 },
+      h5: { fontSize: rem(16), lineHeight: 1.2, fontWeight: 700 },
+      h6: { fontSize: rem(14), lineHeight: 1.2, fontWeight: 600 },
     },
   },
   components: {
