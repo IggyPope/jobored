@@ -6,9 +6,11 @@ import { useRouter } from 'next/router';
 import { Container, Stack } from '@mantine/core';
 
 import VacancyHead from '@/components/VacancyHead/VacancyHead';
+import VacancyHeadSkeleton from '@/components/VacancyHead/VacancyHeadSkeleton';
 import VacancyBody from '@/components/VacancyBody/VacancyBody';
 
 import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
+import VacancyBodySkeleton from '@/components/VacancyBody/VacancyBodySkeleton';
 
 export default function Vacancy() {
   const router = useRouter();
@@ -30,9 +32,8 @@ export default function Vacancy() {
       <Stack spacing="md">
         {isLoading && !vacancy ? (
           <>
-            <p>Loading...</p>
-            <p>Loading...</p>
-            <p>Loading...</p>
+            <VacancyHeadSkeleton />
+            <VacancyBodySkeleton />
           </>
         ) : (
           <>
