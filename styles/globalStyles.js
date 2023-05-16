@@ -16,15 +16,6 @@ const globalStyles = theme => ({
     color: 'inherit',
     textDecoration: 'none',
   },
-
-  p: {
-    marginBottom: '1rem',
-  },
-
-  ul: {
-    marginBottom: '1.25rem',
-    marginLeft: '1.25rem',
-  },
 });
 
 export default globalStyles;

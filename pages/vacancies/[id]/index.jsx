@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { Container, Stack } from '@mantine/core';
+import { Container, Stack, TypographyStylesProvider } from '@mantine/core';
 
 import VacancyHead from '@/components/VacancyHead/VacancyHead';
 import VacancyHeadSkeleton from '@/components/VacancyHead/VacancyHeadSkeleton';
@@ -38,7 +38,9 @@ export default function Vacancy() {
         ) : (
           <>
             <VacancyHead vacancy={vacancy} />
-            <VacancyBody vacancy={vacancy} />
+            <TypographyStylesProvider>
+              <VacancyBody vacancy={vacancy} />
+            </TypographyStylesProvider>
           </>
         )}
       </Stack>
