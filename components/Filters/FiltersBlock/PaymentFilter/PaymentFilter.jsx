@@ -34,7 +34,7 @@ export default function PaymentFilter(props) {
       styles={{
         rightSection: {
           width: '30px',
-          '&>div>:first-child': {
+          '&>div>:first-of-type': {
             transform: 'rotate(180deg)',
           },
         },
