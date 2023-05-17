@@ -1,5 +1,5 @@
 import { Button } from '@mantine/core';
-import ResetIcon from '@/components/icons/ResetIcon';
+import ResetIcon from '@/components/Icons/ResetIcon';
 
 export default function ResetFiltersButton() {
   return (

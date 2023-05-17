@@ -11,7 +11,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import routes from '@/constants/routes';
-import Logo from '@/components/icons/Logo';
+import Logo from '@/components/Icons/Logo';
 
 const useStyles = createStyles(theme => ({
   header: {
