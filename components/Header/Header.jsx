@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import routes from '@/constants/routes';
-import Logo from '../Logo/Logo';
+import Logo from '../Icons/Logo';
 
 const useStyles = createStyles(theme => ({
   header: {
