@@ -7,11 +7,15 @@ import PaymentFilter from './PaymentFilter/PaymentFilter';
 export default function FiltersBlock() {
   return (
     <Paper
-      w={315}
       p={20}
       radius="lg"
       withBorder
       sx={theme => ({
+        width: '315px',
+        minWidth: '260px',
+        [theme.fn.smallerThan('sm')]: {
+          width: '100%',
+        },
         '&[data-with-border]': {
           border: `1px solid ${theme.colors.gray[1]}`,
         },

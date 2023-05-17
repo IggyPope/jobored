@@ -76,12 +76,12 @@ export default function Header() {
   return (
     <header className={classes.header}>
       <Container size="lg" px="lg" h="100%">
-        <Flex h="100%" justify={'space-between'} align={'center'}>
+        <Flex h="100%" justify="space-between" align="center">
           <Link href="/">
             <Logo />
           </Link>
           <Flex
-            justify={'space-between'}
+            justify="space-between"
             gap={rem(60)}
             className={classes.navbar}
           >
