@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Select, Title, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import cataloguesApiService from '@/services/api/catalogues/cataloguesApiService';
-import ChevronDownIcon from '@/components/Icons/ChevronDownIcon';
+import ChevronDownIcon from '@/components/icons/ChevronDownIcon';
 
 export default function CataloguesFilter() {
   const theme = useMantineTheme();

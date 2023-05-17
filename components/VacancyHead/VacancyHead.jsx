@@ -1,8 +1,8 @@
 'use client';
 
 import { Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import StarIcon from '@/components/Icons/StarIcon';
-import LocationIcon from '../Icons/LocationIcon';
+import StarIcon from '@/components/icons/StarIcon';
+import LocationIcon from '@/components/icons/LocationIcon';
 
 export default function VacancyHead({ vacancy }) {
   return (

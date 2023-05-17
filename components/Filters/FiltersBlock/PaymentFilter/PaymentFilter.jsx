@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import SmallShevronDownIcon from '@/components/Icons/SmallChevronDownIcon';
+import SmallShevronDownIcon from '@/components/icons/SmallChevronDownIcon';
 import { NumberInput, Stack, useMantineTheme } from '@mantine/core';
 
 export default function PaymentFilter(props) {

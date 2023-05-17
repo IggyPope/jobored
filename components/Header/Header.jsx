@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import {
   Burger,
@@ -12,7 +11,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import routes from '@/constants/routes';
-import Logo from '../Icons/Logo';
+import Logo from '@/components/icons/Logo';
 
 const useStyles = createStyles(theme => ({
   header: {
