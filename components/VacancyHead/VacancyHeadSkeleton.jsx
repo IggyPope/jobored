@@ -1,5 +1,3 @@
-'use client';
-
 import { Flex, Paper, Skeleton, Stack, Text } from '@mantine/core';
 
 export default function VacancyHeadSkeleton() {

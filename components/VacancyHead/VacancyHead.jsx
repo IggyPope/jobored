@@ -1,5 +1,3 @@
-'use client';
-
 import { Flex, Paper, Stack, Text, Title } from '@mantine/core';
 import StarIcon from '@/components/Icons/StarIcon';
 import LocationIcon from '@/components/Icons/LocationIcon';
