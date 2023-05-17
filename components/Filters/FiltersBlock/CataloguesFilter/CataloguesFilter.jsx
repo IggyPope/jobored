@@ -13,7 +13,7 @@ export default function CataloguesFilter() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    cataloguesApiService.getCatalogues().then(response => {
+    cataloguesApiService.getAll().then(response => {
       const cataloguesList = response.map(catalogue => ({
         value: catalogue.key,
         label: catalogue.title_rus,

@@ -1,11 +1,15 @@
 'use client';
 
-import clientInstance from '@/services/api/clientInstance';
+import apiInstance from '../apiInstance';
 
 const vacanciesApiService = {
   getOneById: async id => {
-    const vacancy = await clientInstance.get(`/vacancies/getOneById?id=${id}`);
-    return vacancy.data;
+    try {
+      const vacancy = await apiInstance.get(`vacancies/${id}/`);
+      return vacancy.data;
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 

@@ -7,16 +7,8 @@ const authStorageService = {
     return JSON.parse(localStorage.getItem('authObject'));
   },
 
-  getAccessToken: () => {
-    const authObject = JSON.parse(localStorage.getItem('authObject'));
-    const accessToken = authObject?.access_token;
-    return accessToken;
-  },
-
-  getRefreshToken: () => {
-    const authObject = JSON.parse(localStorage.getItem('authObject'));
-    const refreshToken = authObject?.refresh_token;
-    return refreshToken;
+  deleteAuthObject: () => {
+    localStorage.removeItem('authObject');
   },
 };
 

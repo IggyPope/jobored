@@ -1,17 +1,12 @@
-import axios from 'axios';
-
-const BASE_URL = process.env.NEXT_PUBLIC_INTERNAL_API_BASE_URL;
+import apiInstance from '../apiInstance';
 
 const cataloguesApiService = {
-  getCatalogues: async () => {
+  getAll: async () => {
     try {
-      const cataloguesResponse = await axios.get(
-        `${BASE_URL}catalogues/getAll`
-      );
-
+      const cataloguesResponse = await apiInstance.get(`catalogues/`);
       return cataloguesResponse.data;
     } catch (error) {
-      return Promise.reject(error);
+      console.log(error);
     }
   },
 };
