@@ -95,6 +95,16 @@ const themeOverrides = {
         },
       },
     },
+    Select: {
+      defaultProps: {
+        size: 'md',
+      },
+    },
+    NumberInput: {
+      defaultProps: {
+        size: 'md',
+      },
+    },
   },
   activeStyles: { transform: 'translateY(0.0625rem)' },
   datesLocale: 'ru',
