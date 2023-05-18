@@ -14,7 +14,7 @@ export default function StarIcon() {
       variant="transparent"
       ref={ref}
       onClick={e => {
-        e.stopPropagation();
+        e.preventDefault();
         isFavoriteHandler.toggle();
       }}
     >

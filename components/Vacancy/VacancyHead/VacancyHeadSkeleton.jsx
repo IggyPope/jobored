@@ -14,26 +14,26 @@ export default function VacancyHeadSkeleton() {
       })}
     >
       <Stack spacing="sm">
-        <Flex direction={'row'} justify={'space-between'} align={'flex-start'}>
-          <Skeleton height={34} width={'65%'} />
+        <Flex direction="row" justify="space-between" align="flex-start">
+          <Skeleton height={34} width="65%" />
           <Skeleton height={30} circle />
         </Flex>
-        <Flex direction={'row'} justify={'flex-start'} gap="xs" wrap={'wrap'}>
-          <Skeleton height={21} width={'25%'} />
-          <Text span inline c="gray.4" lh={'21px'} fz="md">
+        <Flex direction="row" justify="flex-start" gap="xs" wrap="wrap">
+          <Skeleton height={21} width="25%" />
+          <Text span inline c="gray.4" lh="21px" fz="md">
             •
           </Text>
-          <Skeleton height={21} width={'25%'} />
+          <Skeleton height={21} width="25%" />
         </Flex>
         <Flex
-          direction={'row'}
-          justify={'flex-start'}
-          align={'center'}
+          direction="row"
+          justify="flex-start"
+          align="center"
           gap={8}
-          wrap={'wrap'}
+          wrap="wrap"
         >
           <Skeleton height={20} circle />
-          <Skeleton height={16} width={'15%'} />
+          <Skeleton height={16} width="15%" />
         </Flex>
       </Stack>
     </Paper>

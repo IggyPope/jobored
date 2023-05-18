@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 
 import { Container, Stack, TypographyStylesProvider } from '@mantine/core';
 
-import VacancyHead from '@/components/VacancyHead/VacancyHead';
-import VacancyHeadSkeleton from '@/components/VacancyHead/VacancyHeadSkeleton';
-import VacancyBody from '@/components/VacancyBody/VacancyBody';
+import VacancyHead from '@/components/Vacancy/VacancyHead/VacancyHead';
+import VacancyHeadSkeleton from '@/components/Vacancy/VacancyHead/VacancyHeadSkeleton';
+import VacancyBody from '@/components/Vacancy/VacancyBody/VacancyBody';
 
 import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
-import VacancyBodySkeleton from '@/components/VacancyBody/VacancyBodySkeleton';
+import VacancyBodySkeleton from '@/components/Vacancy/VacancyBody/VacancyBodySkeleton';
 
 export default function Vacancy() {
   const router = useRouter();
@@ -28,17 +28,17 @@ export default function Vacancy() {
   return (
     <Container size="md" px="lg" my={40}>
       <Stack spacing="md">
-        {isLoading && !vacancy ? (
-          <>
-            <VacancyHeadSkeleton />
-            <VacancyBodySkeleton />
-          </>
-        ) : (
+        {!isLoading && vacancy ? (
           <>
             <VacancyHead vacancy={vacancy} />
             <TypographyStylesProvider>
               <VacancyBody vacancy={vacancy} />
             </TypographyStylesProvider>
+          </>
+        ) : (
+          <>
+            <VacancyHeadSkeleton />
+            <VacancyBodySkeleton />
           </>
         )}
       </Stack>
