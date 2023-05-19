@@ -6,6 +6,8 @@ import KeyWordFilter from '@/components/Filters/KeywordFilter/KeywordFilter';
 import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
 import VacancyCard from '@/components/Vacancy/VacancyCard/VacancyCard';
 import VacancyCardSkeleton from '@/components/Vacancy/VacancyCard/VacancyCardSkeleton';
+import { ITEMS_PER_PAGE, MAX_TOTAL_ITEMS } from '@/constants/constants';
+import NextIcon from '@/components/Icons/NextIcon';
 
 export default function Vacancies() {
   const router = useRouter();
@@ -13,14 +15,28 @@ export default function Vacancies() {
   const [vacancies, setVacancies] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     setIsLoading(true);
     router.isReady &&
       vacanciesApiService
-        .getMany()
-        .then(res => setVacancies(res))
+        .getMany(page, ITEMS_PER_PAGE)
+        .then((res) => setVacancies(res))
         .finally(() => setIsLoading(false));
   }, [router]);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, page: newPage },
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   return (
     <Container size="lg" px="lg" py={40}>
@@ -29,7 +45,7 @@ export default function Vacancies() {
         justify="stretch"
         align="flex-start"
         gap={28}
-        sx={theme => ({
+        sx={(theme) => ({
           [theme.fn.smallerThan('sm')]: {
             flexDirection: 'column',
             gap: 20,
@@ -40,8 +56,8 @@ export default function Vacancies() {
         <Container w="100%" maw={773} p={0} mx="auto">
           <Stack w="100%" spacing="sm" justify="center">
             <KeyWordFilter />
-            {!isLoading && vacancies ? (
-              vacancies.objects.map(vacancy => {
+            {!isLoading && !!vacancies ? (
+              vacancies.objects.map((vacancy) => {
                 return <VacancyCard key={vacancy.id} vacancy={vacancy} />;
               })
             ) : (
@@ -52,7 +68,25 @@ export default function Vacancies() {
                 <VacancyCardSkeleton />
               </>
             )}
-            <Pagination mt={24} position="center" />
+            <Pagination
+              value={page}
+              onChange={handlePageChange}
+              mt="xl"
+              position="center"
+              radius="xs"
+              spacing={8}
+              total={
+                Math.min(vacancies?.total ?? 5, MAX_TOTAL_ITEMS) /
+                ITEMS_PER_PAGE
+              }
+              styles={(theme) => ({
+                control: {
+                  borderColor: theme.colors.gray[2],
+                  fontSize: theme.fontSizes.sm,
+                },
+              })}
+              nextIcon={NextIcon}
+            />
           </Stack>
         </Container>
       </Flex>

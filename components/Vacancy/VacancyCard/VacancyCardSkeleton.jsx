@@ -21,7 +21,7 @@ export default function VacancyCardSkeleton({ vacancy }) {
       p="xl"
       w="100%"
       withBorder
-      sx={theme => ({
+      sx={(theme) => ({
         '&[data-with-border]': {
           border: `1px solid ${theme.colors.gray[1]}`,
         },
@@ -30,7 +30,7 @@ export default function VacancyCardSkeleton({ vacancy }) {
       <Stack spacing="xs">
         <Flex direction="row" justify="space-between" align="center">
           <Skeleton height={25} width="65%" />
-          <Skeleton height={30} circle />
+          <Skeleton height={28} circle />
         </Flex>
         <Flex
           direction="row"

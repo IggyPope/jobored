@@ -3,7 +3,7 @@
 import apiInstance from '../apiInstance';
 
 const vacanciesApiService = {
-  getOneById: async id => {
+  getOneById: async (id) => {
     try {
       const vacancy = await apiInstance.get(`vacancies/${id}/`);
       return vacancy.data;
@@ -12,13 +12,13 @@ const vacanciesApiService = {
     }
   },
 
-  getMany: async filters => {
+  getMany: async (page, perPage) => {
     try {
       const vacancies = await apiInstance.get(`vacancies/`, {
         params: {
+          page: page - 1,
+          count: perPage,
           published: 1,
-          count: 4,
-          page: 0,
           catalogues: 33,
         },
       });
