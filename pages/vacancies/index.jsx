@@ -76,7 +76,7 @@ export default function Vacancies() {
               radius="xs"
               spacing={8}
               total={
-                Math.min(vacancies?.total ?? 5, MAX_TOTAL_ITEMS) /
+                Math.min(vacancies?.total ?? 125, MAX_TOTAL_ITEMS) /
                 ITEMS_PER_PAGE
               }
               styles={(theme) => ({
