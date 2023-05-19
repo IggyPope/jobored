@@ -21,9 +21,9 @@ export default function VacancyCard({ vacancy }) {
         p="xl"
         w="100%"
         withBorder
-        sx={theme => ({
+        sx={(theme) => ({
           '&:hover': {
-            backgroundColor: theme.colors.gray[0],
+            backgroundColor: theme.colors.blue[0],
           },
           '&[data-with-border]': {
             border: `1px solid ${theme.colors.gray[1]}`,
