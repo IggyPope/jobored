@@ -1,6 +1,7 @@
 'use client';
 
 import apiInstance from '../apiInstance';
+import { ITEMS_PER_PAGE } from '@/constants/constants';
 
 const vacanciesApiService = {
   getOneById: async (id) => {
@@ -12,14 +13,21 @@ const vacanciesApiService = {
     }
   },
 
-  getMany: async (page, perPage) => {
+  getMany: async (queryParams) => {
+    let apiParams = queryParams;
+    let { page } = queryParams;
+
+    if (page) {
+      --page;
+      apiParams = { ...apiParams, page };
+    }
+
     try {
       const vacancies = await apiInstance.get(`vacancies/`, {
         params: {
-          page: page - 1,
-          count: perPage,
           published: 1,
-          catalogues: 33,
+          count: ITEMS_PER_PAGE,
+          ...apiParams,
         },
       });
 

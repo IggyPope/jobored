@@ -15,16 +15,29 @@ export default function Vacancies() {
   const [vacancies, setVacancies] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const [keyword, setKeyword] = useState('');
+
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     setIsLoading(true);
     router.isReady &&
       vacanciesApiService
-        .getMany(page, ITEMS_PER_PAGE)
+        .getMany(router.query)
         .then((res) => setVacancies(res))
         .finally(() => setIsLoading(false));
-  }, [router]);
+  }, [router, page]);
+
+  const handleSubmit = () => {
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, page: 1, keyword: keyword },
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
@@ -55,7 +68,11 @@ export default function Vacancies() {
         <FiltersBlock />
         <Container w="100%" maw={773} p={0} mx="auto">
           <Stack w="100%" spacing="sm" justify="center">
-            <KeyWordFilter />
+            <KeyWordFilter
+              value={keyword}
+              onChange={(e) => setKeyword(e.currentTarget.value)}
+              onSubmit={handleSubmit}
+            />
             {!isLoading && !!vacancies ? (
               vacancies.objects.map((vacancy) => {
                 return <VacancyCard key={vacancy.id} vacancy={vacancy} />;
@@ -76,7 +93,7 @@ export default function Vacancies() {
               radius="xs"
               spacing={8}
               total={
-                Math.min(vacancies?.total ?? 125, MAX_TOTAL_ITEMS) /
+                Math.min(vacancies?.total ?? MAX_TOTAL_ITEMS, MAX_TOTAL_ITEMS) /
                 ITEMS_PER_PAGE
               }
               styles={(theme) => ({
