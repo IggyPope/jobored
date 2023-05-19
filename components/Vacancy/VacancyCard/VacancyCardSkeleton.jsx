@@ -1,20 +1,6 @@
-import Link from 'next/link';
-import {
-  Flex,
-  Paper,
-  Skeleton,
-  Stack,
-  Text,
-  Title,
-  useMantineTheme,
-} from '@mantine/core';
-import StarIcon from '@/components/Icons/StarIcon';
-import LocationIcon from '@/components/Icons/LocationIcon';
-import VacancyPayment from '../common/VacancyPayment';
+import { Flex, Paper, Skeleton, Stack, Text } from '@mantine/core';
 
-export default function VacancyCardSkeleton({ vacancy }) {
-  const theme = useMantineTheme();
-
+export default function VacancyCardSkeleton() {
   return (
     <Paper
       radius="lg"
