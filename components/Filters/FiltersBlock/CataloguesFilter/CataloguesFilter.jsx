@@ -13,8 +13,8 @@ export default function CataloguesFilter() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    cataloguesApiService.getAll().then(response => {
-      const cataloguesList = response.map(catalogue => ({
+    cataloguesApiService.getAll().then((response) => {
+      const cataloguesList = response.map((catalogue) => ({
         value: catalogue.key,
         label: catalogue.title_rus,
         short: catalogue.title_trimmed,
@@ -32,7 +32,7 @@ export default function CataloguesFilter() {
       }
       placeholder="Выберите отрасль"
       value={catalogue}
-      onChange={value => setCatalogue(value)}
+      onChange={(value) => setCatalogue(value)}
       onDropdownOpen={handlers.open}
       onDropdownClose={handlers.close}
       searchable
