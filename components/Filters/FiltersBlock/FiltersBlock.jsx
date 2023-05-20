@@ -7,6 +7,10 @@ import PaymentFilter from './PaymentFilter/PaymentFilter';
 export default function FiltersBlock({
   catalogueValue,
   onCatalogueChange,
+  paymentFrom,
+  onPaymentFromChange,
+  paymentTo,
+  onPaymentToChange,
   applyFilters,
 }) {
   return (
@@ -34,8 +38,16 @@ export default function FiltersBlock({
           />
           <Stack spacing={8}>
             <Title order={5}>Оклад</Title>
-            <PaymentFilter placeholder="От" />
-            <PaymentFilter placeholder="До" />
+            <PaymentFilter
+              value={paymentFrom}
+              onChange={onPaymentFromChange}
+              placeholder="От"
+            />
+            <PaymentFilter
+              value={paymentTo}
+              onChange={onPaymentToChange}
+              placeholder="До"
+            />
           </Stack>
           <Button
             onClick={applyFilters}

@@ -2,10 +2,9 @@ import { useRef, useState } from 'react';
 import SmallShevronDownIcon from '@/components/Icons/SmallChevronDownIcon';
 import { NumberInput, Stack, useMantineTheme } from '@mantine/core';
 
-export default function PaymentFilter(props) {
+export default function PaymentFilter({ value, onChange, ...otherProps }) {
   const theme = useMantineTheme();
 
-  const [value, setValue] = useState('');
   const handlers = useRef();
 
   function incrementHandler() {
@@ -18,10 +17,10 @@ export default function PaymentFilter(props) {
 
   return (
     <NumberInput
-      {...props}
+      {...otherProps}
       hideControls
       value={value}
-      onChange={val => setValue(val)}
+      onChange={(val) => onChange(val)}
       min={0}
       step={1000}
       handlersRef={handlers}

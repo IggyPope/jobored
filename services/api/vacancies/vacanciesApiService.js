@@ -17,9 +17,15 @@ const vacanciesApiService = {
     let apiParams = queryParams;
     let { page } = queryParams;
 
+    // Decrease page by 1, as the api pagination starts with 0
     if (page) {
       --page;
-      apiParams = { ...apiParams, page };
+      apiParams = { ...apiParams, page: page };
+    }
+
+    // Add no_agreement param if payment is supplied in the query
+    if (!!queryParams.payment_from || !!queryParams.payment_to) {
+      apiParams = { ...apiParams, no_agreement: 1 };
     }
 
     try {

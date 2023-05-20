@@ -6,8 +6,9 @@ import KeyWordFilter from '@/components/Filters/KeywordFilter/KeywordFilter';
 import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
 import VacancyCard from '@/components/Vacancy/VacancyCard/VacancyCard';
 import VacancyCardSkeleton from '@/components/Vacancy/VacancyCard/VacancyCardSkeleton';
-import { ITEMS_PER_PAGE, MAX_TOTAL_ITEMS } from '@/constants/constants';
 import NextIcon from '@/components/Icons/NextIcon';
+import { ITEMS_PER_PAGE, MAX_TOTAL_ITEMS } from '@/constants/constants';
+import cleanUpQueryParams from '@/utils/cleanUpQueryParams';
 
 export default function Vacancies() {
   const router = useRouter();
@@ -16,6 +17,8 @@ export default function Vacancies() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [catalogue, setCatalogue] = useState();
+  const [paymentFrom, setPaymentFrom] = useState();
+  const [paymentTo, setPaymentTo] = useState();
   const [keyword, setKeyword] = useState('');
 
   const [page, setPage] = useState(1);
@@ -27,17 +30,27 @@ export default function Vacancies() {
         .getMany(router.query)
         .then((res) => setVacancies(res))
         .finally(() => setIsLoading(false));
-  }, [router, page]);
+  }, [router]);
 
-  const handleSubmit = () => {
+  const handleApplyFilters = () => {
+    setPage(1);
+
+    let newQuery = {
+      ...router.query,
+      page: 1,
+      keyword: keyword,
+      catalogues: catalogue,
+      payment_from: paymentFrom,
+      payment_to: paymentTo,
+    };
+
+    const cleanRouterQuery = cleanUpQueryParams(newQuery);
+
     router.push(
       {
         pathname: router.pathname,
         query: {
-          ...router.query,
-          page: 1,
-          keyword: keyword,
-          catalogues: catalogue,
+          ...cleanRouterQuery,
         },
       },
       undefined,
@@ -74,14 +87,18 @@ export default function Vacancies() {
         <FiltersBlock
           catalogueValue={catalogue}
           onCatalogueChange={setCatalogue}
-          applyFilters={handleSubmit}
+          paymentFrom={paymentFrom}
+          onPaymentFromChange={setPaymentFrom}
+          paymentTo={paymentTo}
+          onPaymentToChange={setPaymentTo}
+          applyFilters={handleApplyFilters}
         />
         <Container w="100%" maw={773} p={0} mx="auto">
           <Stack w="100%" spacing="sm" justify="center">
             <KeyWordFilter
               value={keyword}
               onChange={(e) => setKeyword(e.currentTarget.value)}
-              onSubmit={handleSubmit}
+              onSubmit={handleApplyFilters}
             />
             {!isLoading && !!vacancies ? (
               vacancies.objects.map((vacancy) => {
