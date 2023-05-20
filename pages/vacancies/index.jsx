@@ -74,6 +74,7 @@ export default function Vacancies() {
         <FiltersBlock
           catalogueValue={catalogue}
           onCatalogueChange={setCatalogue}
+          applyFilters={handleSubmit}
         />
         <Container w="100%" maw={773} p={0} mx="auto">
           <Stack w="100%" spacing="sm" justify="center">

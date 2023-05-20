@@ -4,7 +4,11 @@ import FiltersHead from './FiltersHead/FiltersHead';
 import CataloguesFilter from './CataloguesFilter/CataloguesFilter';
 import PaymentFilter from './PaymentFilter/PaymentFilter';
 
-export default function FiltersBlock({ catalogueValue, onCatalogueChange }) {
+export default function FiltersBlock({
+  catalogueValue,
+  onCatalogueChange,
+  applyFilters,
+}) {
   return (
     <Paper
       p={20}
@@ -34,6 +38,7 @@ export default function FiltersBlock({ catalogueValue, onCatalogueChange }) {
             <PaymentFilter placeholder="До" />
           </Stack>
           <Button
+            onClick={applyFilters}
             h={40}
             fz="xs"
             fw={500}
