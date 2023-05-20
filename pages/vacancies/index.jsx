@@ -16,7 +16,7 @@ export default function Vacancies() {
   const [vacancies, setVacancies] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const [catalogue, setCatalogue] = useState(null);
+  const [catalogue, setCatalogue] = useState('');
   const [paymentFrom, setPaymentFrom] = useState('');
   const [paymentTo, setPaymentTo] = useState('');
   const [keyword, setKeyword] = useState('');
@@ -35,7 +35,7 @@ export default function Vacancies() {
   const applyFilters = () => {
     setPage(1);
 
-    let newQuery = {
+    const newQuery = {
       ...router.query,
       page: 1,
       keyword: keyword,
@@ -71,12 +71,28 @@ export default function Vacancies() {
   };
 
   const resetFilters = () => {
-    setCatalogue(null);
+    setCatalogue('');
     setPaymentFrom('');
     setPaymentTo('');
     setPage(1);
 
-    applyFilters();
+    const newQuery = {
+      page: 1,
+      keyword: keyword,
+    };
+
+    const cleanRouterQuery = cleanUpQueryParams(newQuery);
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query: {
+          ...cleanRouterQuery,
+        },
+      },
+      undefined,
+      { shallow: true }
+    );
   };
 
   return (
