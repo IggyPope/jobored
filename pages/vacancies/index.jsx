@@ -15,6 +15,7 @@ export default function Vacancies() {
   const [vacancies, setVacancies] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  const [catalogue, setCatalogue] = useState();
   const [keyword, setKeyword] = useState('');
 
   const [page, setPage] = useState(1);
@@ -32,7 +33,12 @@ export default function Vacancies() {
     router.push(
       {
         pathname: router.pathname,
-        query: { ...router.query, page: 1, keyword: keyword },
+        query: {
+          ...router.query,
+          page: 1,
+          keyword: keyword,
+          catalogues: catalogue,
+        },
       },
       undefined,
       { shallow: true }
@@ -65,7 +71,10 @@ export default function Vacancies() {
           },
         })}
       >
-        <FiltersBlock />
+        <FiltersBlock
+          catalogueValue={catalogue}
+          onCatalogueChange={setCatalogue}
+        />
         <Container w="100%" maw={773} p={0} mx="auto">
           <Stack w="100%" spacing="sm" justify="center">
             <KeyWordFilter

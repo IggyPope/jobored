@@ -4,13 +4,13 @@ import FiltersHead from './FiltersHead/FiltersHead';
 import CataloguesFilter from './CataloguesFilter/CataloguesFilter';
 import PaymentFilter from './PaymentFilter/PaymentFilter';
 
-export default function FiltersBlock() {
+export default function FiltersBlock({ catalogueValue, onCatalogueChange }) {
   return (
     <Paper
       p={20}
       radius="lg"
       withBorder
-      sx={theme => ({
+      sx={(theme) => ({
         width: '315px',
         minWidth: '260px',
         [theme.fn.smallerThan('sm')]: {
@@ -24,7 +24,10 @@ export default function FiltersBlock() {
       <Stack spacing={32}>
         <FiltersHead />
         <Stack spacing={20}>
-          <CataloguesFilter />
+          <CataloguesFilter
+            catalogueValue={catalogueValue}
+            onCatalogueChange={onCatalogueChange}
+          />
           <Stack spacing={8}>
             <Title order={5}>Оклад</Title>
             <PaymentFilter placeholder="От" />
@@ -34,7 +37,7 @@ export default function FiltersBlock() {
             h={40}
             fz="xs"
             fw={500}
-            styles={theme => ({
+            styles={(theme) => ({
               root: {
                 '&:hover': {
                   backgroundColor: theme.colors.blue[3],

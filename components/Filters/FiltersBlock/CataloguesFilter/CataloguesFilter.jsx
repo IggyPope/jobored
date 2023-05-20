@@ -6,10 +6,12 @@ import { useDisclosure } from '@mantine/hooks';
 import cataloguesApiService from '@/services/api/catalogues/cataloguesApiService';
 import ChevronDownIcon from '@/components/Icons/ChevronDownIcon';
 
-export default function CataloguesFilter() {
+export default function CataloguesFilter({
+  catalogueValue,
+  onCatalogueChange,
+}) {
   const theme = useMantineTheme();
   const [opened, handlers] = useDisclosure(false);
-  const [catalogue, setCatalogue] = useState(null);
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -31,8 +33,8 @@ export default function CataloguesFilter() {
         </Title>
       }
       placeholder="Выберите отрасль"
-      value={catalogue}
-      onChange={(value) => setCatalogue(value)}
+      value={catalogueValue}
+      onChange={onCatalogueChange}
       onDropdownOpen={handlers.open}
       onDropdownClose={handlers.close}
       searchable
