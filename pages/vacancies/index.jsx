@@ -16,9 +16,9 @@ export default function Vacancies() {
   const [vacancies, setVacancies] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const [catalogue, setCatalogue] = useState();
-  const [paymentFrom, setPaymentFrom] = useState();
-  const [paymentTo, setPaymentTo] = useState();
+  const [catalogue, setCatalogue] = useState(null);
+  const [paymentFrom, setPaymentFrom] = useState('');
+  const [paymentTo, setPaymentTo] = useState('');
   const [keyword, setKeyword] = useState('');
 
   const [page, setPage] = useState(1);
@@ -32,7 +32,7 @@ export default function Vacancies() {
         .finally(() => setIsLoading(false));
   }, [router]);
 
-  const handleApplyFilters = () => {
+  const applyFilters = () => {
     setPage(1);
 
     let newQuery = {
@@ -70,6 +70,15 @@ export default function Vacancies() {
     );
   };
 
+  const resetFilters = () => {
+    setCatalogue(null);
+    setPaymentFrom('');
+    setPaymentTo('');
+    setPage(1);
+
+    applyFilters();
+  };
+
   return (
     <Container size="lg" px="lg" py={40}>
       <Flex
@@ -91,14 +100,15 @@ export default function Vacancies() {
           onPaymentFromChange={setPaymentFrom}
           paymentTo={paymentTo}
           onPaymentToChange={setPaymentTo}
-          applyFilters={handleApplyFilters}
+          applyFilters={applyFilters}
+          resetFilters={resetFilters}
         />
         <Container w="100%" maw={773} p={0} mx="auto">
           <Stack w="100%" spacing="sm" justify="center">
             <KeyWordFilter
               value={keyword}
               onChange={(e) => setKeyword(e.currentTarget.value)}
-              onSubmit={handleApplyFilters}
+              onSubmit={applyFilters}
             />
             {!isLoading && !!vacancies ? (
               vacancies.objects.map((vacancy) => {

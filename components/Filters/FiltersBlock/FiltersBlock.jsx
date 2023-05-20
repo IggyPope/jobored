@@ -12,6 +12,7 @@ export default function FiltersBlock({
   paymentTo,
   onPaymentToChange,
   applyFilters,
+  resetFilters,
 }) {
   return (
     <Paper
@@ -30,7 +31,7 @@ export default function FiltersBlock({
       })}
     >
       <Stack spacing={32}>
-        <FiltersHead />
+        <FiltersHead resetFilters={resetFilters} />
         <Stack spacing={20}>
           <CataloguesFilter
             catalogueValue={catalogueValue}

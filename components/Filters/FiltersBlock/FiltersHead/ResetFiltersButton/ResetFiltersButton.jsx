@@ -1,13 +1,14 @@
 import { Button } from '@mantine/core';
 import ResetIcon from '@/components/Icons/ResetIcon';
 
-export default function ResetFiltersButton() {
+export default function ResetFiltersButton({ resetFilters }) {
   return (
     <Button
+      onClick={resetFilters}
       compact
       variant="white"
       rightIcon={<ResetIcon />}
-      styles={theme => ({
+      styles={(theme) => ({
         root: {
           padding: 0,
           height: 'auto',
