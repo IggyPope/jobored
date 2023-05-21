@@ -1,7 +1,7 @@
 import { Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import StarIcon from '@/components/Icons/StarIcon';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import VacancyPayment from '../common/VacancyPayment';
+import FavoriteButton from '@/components/Buttons/FavoriteButton';
 
 export default function VacancyHead({ vacancy }) {
   return (
@@ -10,7 +10,7 @@ export default function VacancyHead({ vacancy }) {
       p="xl"
       w="100%"
       withBorder
-      sx={theme => ({
+      sx={(theme) => ({
         '&[data-with-border]': {
           border: `1px solid ${theme.colors.gray[1]}`,
         },
@@ -19,7 +19,7 @@ export default function VacancyHead({ vacancy }) {
       <Stack spacing="sm">
         <Flex direction="row" justify="space-between" align="flex-start">
           <Title order={1}>{vacancy.profession}</Title>
-          <StarIcon />
+          <FavoriteButton vacancy={vacancy} />
         </Flex>
         <Flex
           direction="row"
