@@ -7,7 +7,7 @@ import {
   Title,
   useMantineTheme,
 } from '@mantine/core';
-import StarIcon from '@/components/Icons/StarIcon';
+import FavoriteButton from '@/components/Buttons/FavoriteButton';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import VacancyPayment from '../common/VacancyPayment';
 
@@ -35,7 +35,7 @@ export default function VacancyCard({ vacancy }) {
             <Title order={4} c={theme.primaryColor}>
               {vacancy.profession}
             </Title>
-            <StarIcon />
+            <FavoriteButton vacancy={vacancy} />
           </Flex>
           <Flex
             direction="row"
