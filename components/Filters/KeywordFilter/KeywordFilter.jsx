@@ -1,5 +1,6 @@
+import { TextInput } from '@mantine/core';
+import ApplyFiltersButton from '../../Buttons/ApplyFiltersButton';
 import SearchIcon from '@/components/Icons/SearchIcon';
-import { Button, TextInput } from '@mantine/core';
 
 export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
   return (
@@ -12,29 +13,14 @@ export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
       placeholder="Введите название вакансии"
       icon={<SearchIcon />}
       rightSection={
-        <Button
+        <ApplyFiltersButton
           onClick={onSubmit}
           disabled={disabled}
-          fz="xs"
-          fw={500}
-          size="md"
-          compact
+          h={32}
           px="md"
-          styles={(theme) => ({
-            root: {
-              border: 0,
-              height: '32px',
-              '&:hover': {
-                backgroundColor: theme.colors.blue[3],
-              },
-              '&:active': {
-                backgroundColor: theme.colors.blue[5],
-              },
-            },
-          })}
         >
           Поиск
-        </Button>
+        </ApplyFiltersButton>
       }
       rightSectionWidth={95}
       styles={(theme) => ({

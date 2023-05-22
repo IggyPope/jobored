@@ -1,5 +1,5 @@
 import { Flex, Title } from '@mantine/core';
-import ResetFiltersButton from './ResetFiltersButton/ResetFiltersButton';
+import ResetFiltersButton from '@/components/Buttons/ResetFiltersButton';
 
 export default function FiltersHead({ resetFilters }) {
   return (

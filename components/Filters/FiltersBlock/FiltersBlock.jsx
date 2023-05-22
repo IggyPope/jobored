@@ -1,8 +1,10 @@
 import { React } from 'react';
-import { Button, Paper, Stack, Title } from '@mantine/core';
+import { Paper, Stack, Title } from '@mantine/core';
+
 import FiltersHead from './FiltersHead/FiltersHead';
 import CataloguesFilter from './CataloguesFilter/CataloguesFilter';
 import PaymentFilter from './PaymentFilter/PaymentFilter';
+import ApplyFiltersButton from '@/components/Buttons/ApplyFiltersButton';
 
 export default function FiltersBlock({
   catalogueValue,
@@ -42,37 +44,23 @@ export default function FiltersBlock({
           <Stack spacing={8}>
             <Title order={5}>Оклад</Title>
             <PaymentFilter
+              data-elem="salary-from-input"
               value={paymentFrom}
               onChange={onPaymentFromChange}
               disabled={disabled}
               placeholder="От"
             />
             <PaymentFilter
+              data-elem="salary-to-input"
               value={paymentTo}
               onChange={onPaymentToChange}
               disabled={disabled}
               placeholder="До"
             />
           </Stack>
-          <Button
-            onClick={applyFilters}
-            disabled={disabled}
-            h={40}
-            fz="xs"
-            fw={500}
-            styles={(theme) => ({
-              root: {
-                '&:hover': {
-                  backgroundColor: theme.colors.blue[3],
-                },
-                '&:active': {
-                  backgroundColor: theme.colors.blue[5],
-                },
-              },
-            })}
-          >
+          <ApplyFiltersButton onClick={applyFilters} disabled={disabled} h={40}>
             Применить
-          </Button>
+          </ApplyFiltersButton>
         </Stack>
       </Stack>
     </Paper>
