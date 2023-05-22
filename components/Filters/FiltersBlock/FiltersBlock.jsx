@@ -13,6 +13,7 @@ export default function FiltersBlock({
   onPaymentToChange,
   applyFilters,
   resetFilters,
+  disabled,
 }) {
   return (
     <Paper
@@ -34,24 +35,28 @@ export default function FiltersBlock({
         <FiltersHead resetFilters={resetFilters} />
         <Stack spacing={20}>
           <CataloguesFilter
-            catalogueValue={catalogueValue}
-            onCatalogueChange={onCatalogueChange}
+            value={catalogueValue}
+            onChange={onCatalogueChange}
+            disabled={disabled}
           />
           <Stack spacing={8}>
             <Title order={5}>Оклад</Title>
             <PaymentFilter
               value={paymentFrom}
               onChange={onPaymentFromChange}
+              disabled={disabled}
               placeholder="От"
             />
             <PaymentFilter
               value={paymentTo}
               onChange={onPaymentToChange}
+              disabled={disabled}
               placeholder="До"
             />
           </Stack>
           <Button
             onClick={applyFilters}
+            disabled={disabled}
             h={40}
             fz="xs"
             fw={500}

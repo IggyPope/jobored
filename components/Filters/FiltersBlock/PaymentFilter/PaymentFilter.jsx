@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import SmallShevronDownIcon from '@/components/Icons/SmallChevronDownIcon';
 import { NumberInput, Stack, useMantineTheme } from '@mantine/core';
 

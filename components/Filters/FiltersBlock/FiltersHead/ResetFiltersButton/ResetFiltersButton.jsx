@@ -1,10 +1,10 @@
 import { Button } from '@mantine/core';
 import ResetIcon from '@/components/Icons/ResetIcon';
 
-export default function ResetFiltersButton({ resetFilters }) {
+export default function ResetFiltersButton(props) {
   return (
     <Button
-      onClick={resetFilters}
+      {...props}
       compact
       variant="white"
       rightIcon={<ResetIcon />}

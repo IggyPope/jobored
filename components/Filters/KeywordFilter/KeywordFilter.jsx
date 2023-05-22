@@ -1,18 +1,20 @@
 import SearchIcon from '@/components/Icons/SearchIcon';
 import { Button, TextInput } from '@mantine/core';
 
-export default function KeyWordFilter({ value, onChange, onSubmit }) {
+export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
   return (
     <TextInput
       value={value}
       onChange={onChange}
       onKeyDown={(e) => e.key === 'Enter' && onSubmit()}
+      disabled={disabled}
       w="100%"
       placeholder="Введите название вакансии"
       icon={<SearchIcon />}
       rightSection={
         <Button
           onClick={onSubmit}
+          disabled={disabled}
           fz="xs"
           fw={500}
           size="md"

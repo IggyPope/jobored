@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+
 import { Container, Flex, Pagination, Stack } from '@mantine/core';
+
 import FiltersBlock from '@/components/Filters/FiltersBlock/FiltersBlock';
 import KeyWordFilter from '@/components/Filters/KeywordFilter/KeywordFilter';
 import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
 import VacancyCard from '@/components/Vacancy/VacancyCard/VacancyCard';
 import VacancyCardSkeleton from '@/components/Vacancy/VacancyCard/VacancyCardSkeleton';
 import NextIcon from '@/components/Icons/NextIcon';
+import NotFound from '@/components/NotFound/NotFound';
+
 import { ITEMS_PER_PAGE, MAX_TOTAL_ITEMS } from '@/constants/constants';
 import cleanUpQueryParams from '@/utils/cleanUpQueryParams';
 
@@ -16,19 +20,27 @@ export default function Vacancies() {
   const [vacancies, setVacancies] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  const [catalogue, setCatalogue] = useState('');
+  const [catalogue, setCatalogue] = useState(null);
   const [paymentFrom, setPaymentFrom] = useState('');
   const [paymentTo, setPaymentTo] = useState('');
   const [keyword, setKeyword] = useState('');
 
   const [page, setPage] = useState(1);
 
+  //fetch data and set filter states on page reload
   useEffect(() => {
     setIsLoading(true);
     router.isReady &&
       vacanciesApiService
         .getMany(router.query)
         .then((res) => setVacancies(res))
+        .then(() => {
+          setPage(Number(router.query.page) || 1);
+          setCatalogue(router.query.catalogues?.toString() || null);
+          setPaymentFrom(Number(router.query.payment_from) || '');
+          setPaymentTo(Number(router.query.payment_to) || '');
+          setKeyword(router.query.keyword ?? '');
+        })
         .finally(() => setIsLoading(false));
   }, [router]);
 
@@ -71,11 +83,6 @@ export default function Vacancies() {
   };
 
   const resetFilters = () => {
-    setCatalogue('');
-    setPaymentFrom('');
-    setPaymentTo('');
-    setPage(1);
-
     const newQuery = {
       page: 1,
       keyword: keyword,
@@ -118,6 +125,7 @@ export default function Vacancies() {
           onPaymentToChange={setPaymentTo}
           applyFilters={applyFilters}
           resetFilters={resetFilters}
+          disabled={isLoading}
         />
         <Container w="100%" maw={773} p={0} mx="auto">
           <Stack w="100%" spacing="sm" justify="center">
@@ -125,12 +133,15 @@ export default function Vacancies() {
               value={keyword}
               onChange={(e) => setKeyword(e.currentTarget.value)}
               onSubmit={applyFilters}
+              disabled={isLoading}
             />
-            {!isLoading && !!vacancies ? (
+            {!isLoading &&
+              vacancies &&
               vacancies.objects.map((vacancy) => {
                 return <VacancyCard key={vacancy.id} vacancy={vacancy} />;
-              })
-            ) : (
+              })}
+            {!isLoading && !vacancies.objects?.length && <NotFound />}
+            {isLoading && (
               <>
                 <VacancyCardSkeleton />
                 <VacancyCardSkeleton />
@@ -139,12 +150,14 @@ export default function Vacancies() {
               </>
             )}
             <Pagination
-              value={page}
+              value={+page ?? 1}
+              defaultValue={1}
               onChange={handlePageChange}
               mt="xl"
               position="center"
               radius="xs"
               spacing={8}
+              disabled={isLoading}
               total={
                 Math.min(vacancies?.total ?? MAX_TOTAL_ITEMS, MAX_TOTAL_ITEMS) /
                 ITEMS_PER_PAGE

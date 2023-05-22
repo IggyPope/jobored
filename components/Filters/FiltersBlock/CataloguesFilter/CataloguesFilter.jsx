@@ -6,20 +6,16 @@ import { useDisclosure } from '@mantine/hooks';
 import cataloguesApiService from '@/services/api/catalogues/cataloguesApiService';
 import ChevronDownIcon from '@/components/Icons/ChevronDownIcon';
 
-export default function CataloguesFilter({
-  catalogueValue,
-  onCatalogueChange,
-}) {
+export default function CataloguesFilter({ value, onChange, disabled }) {
   const theme = useMantineTheme();
   const [opened, handlers] = useDisclosure(false);
   const [list, setList] = useState([]);
 
   useEffect(() => {
     cataloguesApiService.getAll().then((response) => {
-      const cataloguesList = response.map((catalogue) => ({
-        value: catalogue.key,
-        label: catalogue.title_rus,
-        short: catalogue.title_trimmed,
+      const cataloguesList = response.map((item) => ({
+        value: item.key.toString(),
+        label: item.title_rus,
       }));
       setList(cataloguesList);
     });
@@ -27,14 +23,15 @@ export default function CataloguesFilter({
 
   return (
     <Select
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
       label={
         <Title order={5} mb={8} color={theme.black}>
           Отрасль
         </Title>
       }
       placeholder="Выберите отрасль"
-      value={catalogueValue}
-      onChange={onCatalogueChange}
       onDropdownOpen={handlers.open}
       onDropdownClose={handlers.close}
       searchable
@@ -64,6 +61,7 @@ export default function CataloguesFilter({
           fontSize: theme.fontSizes.xs,
           fontWeight: 400,
           padding: '8px 12px',
+          whiteSpace: 'normal',
           '&:hover': {
             backgroundColor: theme.colors.blue[0],
           },

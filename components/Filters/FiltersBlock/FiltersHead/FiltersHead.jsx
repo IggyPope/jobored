@@ -5,7 +5,7 @@ export default function FiltersHead({ resetFilters }) {
   return (
     <Flex direction="row" justify="space-between" align="center">
       <Title order={3}>Фильтры</Title>
-      <ResetFiltersButton resetFilters={resetFilters} />
+      <ResetFiltersButton onClick={resetFilters} />
     </Flex>
   );
 }
