@@ -1,4 +1,4 @@
-const globalStyles = theme => ({
+const globalStyles = (theme) => ({
   '*, *::before, *::after': {
     boxSizing: 'border-box',
     padding: 0,
