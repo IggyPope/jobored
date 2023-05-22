@@ -1,22 +1,30 @@
+'use client';
+
+import { useState } from 'react';
 import { ActionIcon } from '@mantine/core';
-import { useDisclosure, useHover } from '@mantine/hooks';
-import favoriteVacanciesService from '@/services/localStorage/favoriteVacanciesService';
+import { useHover } from '@mantine/hooks';
+
+import { useFavorites } from '@/contexts/FavoritesContext';
+
 import StarIcon from '../Icons/StarIcon';
 
 export default function FavoriteButton({ vacancy }) {
-  const [isFavorite, isFavoriteHandler] = useDisclosure(
-    favoriteVacanciesService.checkFavorite(vacancy.id)
-  );
+  const { addFavorite, removeFavorite, checkFavorite } = useFavorites();
+
+  const [isFavorite, setIsFavorite] = useState(checkFavorite(vacancy.id));
+
   const { hovered, ref } = useHover();
 
   const handleClick = (e) => {
     e.preventDefault();
-    isFavoriteHandler.toggle();
-    if (isFavorite) {
-      favoriteVacanciesService.removeFavorite(vacancy.id);
+
+    if (!isFavorite) {
+      addFavorite(vacancy);
     } else {
-      favoriteVacanciesService.addFavorite(vacancy);
+      removeFavorite(vacancy.id);
     }
+
+    setIsFavorite((prevValue) => !prevValue);
   };
 
   return (

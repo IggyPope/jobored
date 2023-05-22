@@ -1,10 +1,15 @@
+'use client';
+
+import FavoritesContextProvider from '@/contexts/FavoritesContext';
 import Header from '../Header/Header';
 
 export default function MainLayout({ children }) {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <FavoritesContextProvider>
+        <main>{children}</main>
+      </FavoritesContextProvider>
     </>
   );
 }
