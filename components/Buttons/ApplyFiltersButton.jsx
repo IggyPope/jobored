@@ -9,6 +9,7 @@ export default function ApplyFiltersButton({
   return (
     <Button
       {...otherProps}
+      data-elem="search-button"
       onClick={onClick}
       disabled={disabled}
       fz="xs"

@@ -5,6 +5,7 @@ import SearchIcon from '@/components/Icons/SearchIcon';
 export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
   return (
     <TextInput
+      data-elem="search-input"
       value={value}
       onChange={onChange}
       onKeyDown={(e) => e.key === 'Enter' && onSubmit()}

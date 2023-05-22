@@ -23,6 +23,7 @@ export default function CataloguesFilter({ value, onChange, disabled }) {
 
   return (
     <Select
+      data-elem="industry-select"
       value={value}
       onChange={onChange}
       disabled={disabled}

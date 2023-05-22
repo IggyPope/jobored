@@ -28,7 +28,12 @@ export default function FavoriteButton({ vacancy }) {
   };
 
   return (
-    <ActionIcon variant="transparent" ref={ref} onClick={(e) => handleClick(e)}>
+    <ActionIcon
+      data-elem={`vacancy-${vacancy.id}-shortlist-button`}
+      variant="transparent"
+      ref={ref}
+      onClick={(e) => handleClick(e)}
+    >
       <StarIcon hovered={hovered} isFavorite={isFavorite} />
     </ActionIcon>
   );

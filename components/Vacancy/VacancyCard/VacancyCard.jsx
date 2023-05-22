@@ -17,6 +17,7 @@ export default function VacancyCard({ vacancy }) {
   return (
     <Link href={`/vacancies/${vacancy.id}`}>
       <Paper
+        data-elem={`vacancy-${vacancy.id}`}
         radius="lg"
         p="xl"
         w="100%"
