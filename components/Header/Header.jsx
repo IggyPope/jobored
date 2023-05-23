@@ -1,74 +1,15 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  Burger,
-  Container,
-  Drawer,
-  Flex,
-  Stack,
-  createStyles,
-  rem,
-} from '@mantine/core';
+import { Burger, Container, Drawer, Flex, Stack, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import routes from '@/constants/routes';
 import Logo from '@/components/Icons/Logo';
-
-const useStyles = createStyles(theme => ({
-  header: {
-    backgroundColor: theme.white,
-    height: rem(84),
-    width: '100%',
-    border: 0,
-  },
-
-  placeholder: {
-    width: rem(141),
-
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
-    },
-  },
-
-  navbar: {
-    [theme.fn.smallerThan('xs')]: {
-      display: 'none',
-    },
-  },
-
-  navLink: {
-    fontSize: theme.fontSizes.sm,
-    lineHeight: rem(20),
-  },
-
-  activeLink: {
-    color: theme.colors.blue[4],
-    fontWeight: 500,
-  },
-
-  drawerLink: {
-    fontSize: theme.fontSizes.md,
-    padding: rem(10),
-  },
-
-  activeDrawerLink: {
-    color: theme.colors.blue[5],
-    backgroundColor: theme.colors.blue[0],
-    fontWeight: 500,
-  },
-
-  burger: {
-    display: 'none',
-
-    [theme.fn.smallerThan('xs')]: {
-      display: 'block',
-    },
-  },
-}));
+import useStyles from './styles';
 
 export default function Header() {
   const { classes, cx } = useStyles();
 
-  const [burgerOpened, { open, close, toggle }] = useDisclosure(false);
+  const [burgerOpened, { close, toggle }] = useDisclosure(false);
 
   const router = useRouter();
   const segment = router.pathname.split('/')[1];
@@ -77,15 +18,13 @@ export default function Header() {
     <header className={classes.header}>
       <Container size="lg" px="lg" h="100%">
         <Flex h="100%" justify="space-between" align="center">
-          <Link href="/">
-            <Logo />
-          </Link>
+          <Logo />
           <Flex
             justify="space-between"
             gap={rem(60)}
             className={classes.navbar}
           >
-            {routes.map(route => {
+            {routes.map((route) => {
               return (
                 <Link
                   key={route.path}
@@ -115,7 +54,7 @@ export default function Header() {
         position="right"
       >
         <Stack spacing="0">
-          {routes.map(route => {
+          {routes.map((route) => {
             return (
               <Link
                 key={'drawer_' + route.path}

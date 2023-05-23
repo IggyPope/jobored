@@ -87,11 +87,11 @@ const themeOverrides = {
     Container: {
       defaultProps: {
         sizes: {
-          xs: 371,
-          sm: 720,
-          md: 817,
-          lg: 1160,
-          xl: 1320,
+          xs: rem(371),
+          sm: rem(720),
+          md: rem(817),
+          lg: rem(1160),
+          xl: rem(1320),
         },
       },
     },
