@@ -1,12 +1,20 @@
-import { Paper, TypographyStylesProvider } from '@mantine/core';
+import {
+  Paper,
+  TypographyStylesProvider,
+  useMantineTheme,
+} from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 export default function VacancyBody({ vacancy }) {
+  const theme = useMantineTheme();
+  const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
   return (
     <TypographyStylesProvider fz="sm">
       <Paper
         radius="lg"
-        p="xl"
-        w={'100%'}
+        p={smallScreen ? 'sm' : 'xl'}
+        w="100%"
         withBorder
         sx={(theme) => ({
           '&[data-with-border]': {
