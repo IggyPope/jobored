@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { Container, Stack, TypographyStylesProvider } from '@mantine/core';
+import { Container, Stack } from '@mantine/core';
 
 import VacancyHead from '@/components/Vacancy/VacancyHead/VacancyHead';
 import VacancyHeadSkeleton from '@/components/Vacancy/VacancyHead/VacancyHeadSkeleton';
@@ -21,7 +21,7 @@ export default function Vacancy() {
     router.isReady &&
       vacanciesApiService
         .getOneById(router.query.id)
-        .then(res => setVacancy(res))
+        .then((res) => setVacancy(res))
         .finally(() => setIsLoading(false));
   }, [router]);
 
@@ -31,9 +31,7 @@ export default function Vacancy() {
         {!isLoading && vacancy ? (
           <>
             <VacancyHead vacancy={vacancy} />
-            <TypographyStylesProvider>
-              <VacancyBody vacancy={vacancy} />
-            </TypographyStylesProvider>
+            <VacancyBody vacancy={vacancy} />
           </>
         ) : (
           <>
