@@ -1,7 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Container, Pagination, Stack } from '@mantine/core';
+import {
+  Container,
+  Pagination,
+  Stack,
+  rem,
+  useMantineTheme,
+} from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 import { useFavorites } from '@/contexts/FavoritesContext';
 
@@ -12,6 +19,9 @@ import NextIcon from '@/components/Icons/NextIcon';
 import NotFound from '@/components/NotFound/NotFound';
 
 export default function Favorites() {
+  const theme = useMantineTheme();
+  const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
   const { favorites } = useFavorites();
   const [vacancies, setVacancies] = useState([]);
   const [page, setPage] = useState(1);
@@ -24,7 +34,11 @@ export default function Favorites() {
   }, [favorites]);
 
   return (
-    <Container size="md" px="lg" py={40}>
+    <Container
+      size="md"
+      px={smallScreen ? 'xxs' : 'lg'}
+      py={smallScreen ? 'sm' : rem(40)}
+    >
       <Stack justify="space-between" spacing="xl">
         <Stack spacing="sm">
           {!isLoading && vacancies.length === 0 ? (
@@ -44,11 +58,15 @@ export default function Favorites() {
           <Pagination
             value={page}
             onChange={setPage}
-            position="center"
-            bottom={10}
-            radius="xs"
-            spacing={8}
             total={Math.ceil(vacancies?.length / ITEMS_PER_PAGE)}
+            size={
+              smallScreen && Math.ceil(vacancies?.length / ITEMS_PER_PAGE) > 6
+                ? 'xs'
+                : 'md'
+            }
+            position="center"
+            radius="xs"
+            spacing={smallScreen ? 4 : 'xxs'}
             styles={(theme) => ({
               control: {
                 borderColor: theme.colors.gray[2],
