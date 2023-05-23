@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { Container, Flex, Pagination, Stack } from '@mantine/core';
+import {
+  Container,
+  Flex,
+  Pagination,
+  Stack,
+  rem,
+  useMantineTheme,
+} from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 import FiltersBlock from '@/components/Filters/FiltersBlock/FiltersBlock';
 import KeyWordFilter from '@/components/Filters/KeywordFilter/KeywordFilter';
@@ -15,6 +23,9 @@ import { ITEMS_PER_PAGE, MAX_TOTAL_ITEMS } from '@/constants/constants';
 import cleanUpQueryParams from '@/utils/cleanUpQueryParams';
 
 export default function Vacancies() {
+  const theme = useMantineTheme();
+  const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
   const router = useRouter();
 
   const [vacancies, setVacancies] = useState();
@@ -103,18 +114,16 @@ export default function Vacancies() {
   };
 
   return (
-    <Container size="lg" px="lg" py={40}>
+    <Container
+      size="lg"
+      px={smallScreen ? 'xxs' : 'lg'}
+      py={smallScreen ? 'sm' : rem(40)}
+    >
       <Flex
-        direction="row"
+        direction={smallScreen ? 'column' : 'row'}
         justify="stretch"
         align="flex-start"
-        gap={28}
-        sx={(theme) => ({
-          [theme.fn.smallerThan('sm')]: {
-            flexDirection: 'column',
-            gap: 20,
-          },
-        })}
+        gap={smallScreen ? 'xs' : 'xxl'}
       >
         <FiltersBlock
           catalogueValue={catalogue}
@@ -127,8 +136,8 @@ export default function Vacancies() {
           resetFilters={resetFilters}
           disabled={isLoading}
         />
-        <Container w="100%" maw={773} p={0} mx="auto">
-          <Stack w="100%" spacing="sm" justify="center">
+        <Container w="100%" maw={773} p={0}>
+          <Stack w="100%" spacing={smallScreen ? 'xs' : 'sm'} justify="center">
             <KeyWordFilter
               value={keyword}
               onChange={(e) => setKeyword(e.currentTarget.value)}
@@ -152,16 +161,17 @@ export default function Vacancies() {
             <Pagination
               value={+page ?? 1}
               defaultValue={1}
-              onChange={handlePageChange}
-              mt="xl"
-              position="center"
-              radius="xs"
-              spacing={8}
-              disabled={isLoading}
               total={
                 Math.min(vacancies?.total ?? MAX_TOTAL_ITEMS, MAX_TOTAL_ITEMS) /
                 ITEMS_PER_PAGE
               }
+              onChange={handlePageChange}
+              disabled={isLoading}
+              size={smallScreen ? 'xs' : 'md'}
+              mt={smallScreen ? 'none' : 'xl'}
+              position="center"
+              radius="xs"
+              spacing={smallScreen ? 4 : 'xxs'}
               styles={(theme) => ({
                 control: {
                   borderColor: theme.colors.gray[2],

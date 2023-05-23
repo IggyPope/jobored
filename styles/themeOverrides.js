@@ -54,11 +54,13 @@ const themeOverrides = {
   },
 
   spacing: {
+    xxs: rem(8),
     xs: rem(12),
     sm: rem(16),
     md: rem(20),
     lg: rem(22),
     xl: rem(24),
+    xxl: rem(28),
   },
 
   breakpoints: {
