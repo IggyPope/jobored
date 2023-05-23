@@ -1,8 +1,13 @@
-import { TextInput } from '@mantine/core';
+import { TextInput, useMantineTheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+
 import ApplyFiltersButton from '../../Buttons/ApplyFiltersButton';
 import SearchIcon from '@/components/Icons/SearchIcon';
 
 export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
+  const theme = useMantineTheme();
+  const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
   return (
     <TextInput
       data-elem="search-input"
@@ -10,8 +15,11 @@ export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
       onChange={onChange}
       onKeyDown={(e) => e.key === 'Enter' && onSubmit()}
       disabled={disabled}
+      placeholder={
+        smallScreen ? 'Название вакансии' : 'Введите название вакансии'
+      }
+      size={smallScreen ? 'xs' : 'sm'}
       w="100%"
-      placeholder="Введите название вакансии"
       icon={<SearchIcon />}
       rightSection={
         <ApplyFiltersButton
