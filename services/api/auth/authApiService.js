@@ -1,8 +1,8 @@
 import axios from 'axios';
 import authStorageService from '@/services/localStorage/authStorageService';
 
-// const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-const BASE_URL = 'https://startup-summer-proxy-production.up.railway.app/2.0/';
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const BASE_URL = 'https://startup-summer-proxy-production.up.railway.app/2.0/';
 const API_LOGIN = process.env.NEXT_PUBLIC_API_LOGIN;
 const API_PASSWORD = process.env.NEXT_PUBLIC_API_PASSWORD;
 const API_CLIENT_ID = process.env.NEXT_PUBLIC_API_CLIENT_ID;

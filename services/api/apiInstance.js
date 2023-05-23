@@ -4,8 +4,8 @@ import axios from 'axios';
 import authStorageService from '@/services/localStorage/authStorageService';
 import authApiService from '@/services/api/auth/authApiService';
 
-// const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-const BASE_URL = 'https://startup-summer-proxy-production.up.railway.app/2.0/';
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const BASE_URL = 'https://startup-summer-proxy-production.up.railway.app/2.0/';
 const X_SECRET_KEY = process.env.NEXT_PUBLIC_API_X_SECRET_KEY;
 const CLIENT_SECRET = process.env.NEXT_PUBLIC_API_CLIENT_SECRET;
 
