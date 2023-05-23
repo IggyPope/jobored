@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { Container, Stack } from '@mantine/core';
+import { Container, Stack, rem, useMantineTheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 import VacancyHead from '@/components/Vacancy/VacancyHead/VacancyHead';
 import VacancyHeadSkeleton from '@/components/Vacancy/VacancyHead/VacancyHeadSkeleton';
@@ -11,6 +12,9 @@ import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
 import VacancyBodySkeleton from '@/components/Vacancy/VacancyBody/VacancyBodySkeleton';
 
 export default function Vacancy() {
+  const theme = useMantineTheme();
+  const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
   const router = useRouter();
 
   const [vacancy, setVacancy] = useState(null);
@@ -26,8 +30,12 @@ export default function Vacancy() {
   }, [router]);
 
   return (
-    <Container size="md" px="lg" my={40}>
-      <Stack spacing="md">
+    <Container
+      size="md"
+      px={smallScreen ? 'xxs' : 'lg'}
+      py={smallScreen ? 'sm' : rem(40)}
+    >
+      <Stack spacing={smallScreen ? 'xs' : 'md'}>
         {!isLoading && vacancy ? (
           <>
             <VacancyHead vacancy={vacancy} />
