@@ -14,7 +14,7 @@ const vacanciesApiService = {
   },
 
   getMany: async (queryParams) => {
-    let apiParams = queryParams;
+    let apiParams = { ...queryParams };
     let { page } = queryParams;
 
     // Decrease page by 1, as the api pagination starts with 0
