@@ -1,5 +1,6 @@
 import { React } from 'react';
-import { Paper, Stack, Title } from '@mantine/core';
+import { Paper, Stack, Title, useMantineTheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 import FiltersHead from './FiltersHead/FiltersHead';
 import CataloguesFilter from './CataloguesFilter/CataloguesFilter';
@@ -17,31 +18,31 @@ export default function FiltersBlock({
   resetFilters,
   disabled,
 }) {
+  const theme = useMantineTheme();
+  const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
   return (
     <Paper
-      p={20}
+      w={smallScreen ? '100%' : '315px'}
+      p={smallScreen ? 'sm' : 'lg'}
       radius="lg"
       withBorder
       sx={(theme) => ({
-        width: '315px',
         minWidth: '260px',
-        [theme.fn.smallerThan('sm')]: {
-          width: '100%',
-        },
         '&[data-with-border]': {
           border: `1px solid ${theme.colors.gray[1]}`,
         },
       })}
     >
-      <Stack spacing={32}>
+      <Stack spacing={smallScreen ? 'xs' : 32}>
         <FiltersHead resetFilters={resetFilters} />
-        <Stack spacing={20}>
+        <Stack spacing={smallScreen ? 'xs' : 'md'}>
           <CataloguesFilter
             value={catalogueValue}
             onChange={onCatalogueChange}
             disabled={disabled}
           />
-          <Stack spacing={8}>
+          <Stack spacing={smallScreen ? 4 : 8}>
             <Title order={5}>Оклад</Title>
             <PaymentFilter
               data-elem="salary-from-input"
