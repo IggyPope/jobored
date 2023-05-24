@@ -6,6 +6,7 @@ import FiltersHead from './FiltersHead/FiltersHead';
 import CataloguesFilter from './CataloguesFilter/CataloguesFilter';
 import PaymentFilter from './PaymentFilter/PaymentFilter';
 import ApplyFiltersButton from '@/components/Buttons/ApplyFiltersButton';
+import { PAYMENT_STEP } from '@/constants/constants';
 
 function FiltersBlock(props) {
   const theme = useMantineTheme();
@@ -29,7 +30,7 @@ function FiltersBlock(props) {
         <Stack spacing={smallScreen ? 'xs' : 'md'}>
           <CataloguesFilter
             value={props.catalogueValue}
-            onChange={props.onCatalogueChange}
+            onChange={props.handleCatalogueChange}
             disabled={props.disabled}
           />
           <Stack spacing={smallScreen ? 4 : 8}>
@@ -37,14 +38,16 @@ function FiltersBlock(props) {
             <PaymentFilter
               data-elem="salary-from-input"
               value={props.paymentFrom}
-              onChange={props.onPaymentFromChange}
+              min={PAYMENT_STEP}
+              handleChange={props.handlePaymentFromChange}
               disabled={props.disabled}
               placeholder="От"
             />
             <PaymentFilter
               data-elem="salary-to-input"
               value={props.paymentTo}
-              onChange={props.onPaymentToChange}
+              min={props.paymentFrom === '' ? PAYMENT_STEP : props.paymentFrom}
+              handleChange={props.handlePaymentToChange}
               disabled={props.disabled}
               placeholder="До"
             />

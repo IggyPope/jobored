@@ -127,11 +127,11 @@ export default function Vacancies() {
       >
         <FiltersBlock
           catalogueValue={catalogue}
-          onCatalogueChange={setCatalogue}
+          handleCatalogueChange={setCatalogue}
           paymentFrom={paymentFrom}
-          onPaymentFromChange={setPaymentFrom}
+          handlePaymentFromChange={setPaymentFrom}
           paymentTo={paymentTo}
-          onPaymentToChange={setPaymentTo}
+          handlePaymentToChange={setPaymentTo}
           applyFilters={applyFilters}
           resetFilters={resetFilters}
           disabled={isLoading}

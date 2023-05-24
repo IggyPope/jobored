@@ -1,8 +1,15 @@
 import { useRef } from 'react';
-import SmallShevronDownIcon from '@/components/Icons/SmallChevronDownIcon';
 import { NumberInput, Stack, useMantineTheme } from '@mantine/core';
 
-export default function PaymentFilter({ value, onChange, ...otherProps }) {
+import SmallShevronDownIcon from '@/components/Icons/SmallChevronDownIcon';
+import { PAYMENT_STEP } from '@/constants/constants';
+
+export default function PaymentFilter({
+  value,
+  handleChange,
+  min,
+  ...otherProps
+}) {
   const theme = useMantineTheme();
 
   const handlers = useRef();
@@ -12,7 +19,9 @@ export default function PaymentFilter({ value, onChange, ...otherProps }) {
   }
 
   function decrementHandler() {
-    handlers.current.decrement();
+    value === min || value === ''
+      ? handleChange('')
+      : handlers.current.decrement();
   }
 
   return (
@@ -20,9 +29,9 @@ export default function PaymentFilter({ value, onChange, ...otherProps }) {
       {...otherProps}
       hideControls
       value={value}
-      onChange={(val) => onChange(val)}
-      min={0}
-      step={1000}
+      min={min}
+      onChange={(val) => handleChange(val)}
+      step={PAYMENT_STEP}
       handlersRef={handlers}
       rightSection={
         <Stack spacing={2} w={30} h="100%">
