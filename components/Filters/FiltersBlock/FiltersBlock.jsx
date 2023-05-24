@@ -7,10 +7,14 @@ import CataloguesFilter from './CataloguesFilter/CataloguesFilter';
 import PaymentFilter from './PaymentFilter/PaymentFilter';
 import ApplyFiltersButton from '@/components/Buttons/ApplyFiltersButton';
 import { PAYMENT_STEP } from '@/constants/constants';
+import { useFilters } from '@/contexts/FiltersContext';
 
-function FiltersBlock(props) {
+function FiltersBlock() {
   const theme = useMantineTheme();
   const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
+  const { paymentFrom, setPaymentFrom, paymentTo, setPaymentTo, isLoading } =
+    useFilters();
 
   return (
     <Paper
@@ -26,39 +30,29 @@ function FiltersBlock(props) {
       })}
     >
       <Stack spacing={smallScreen ? 'xs' : 32}>
-        <FiltersHead resetFilters={props.resetFilters} />
+        <FiltersHead />
         <Stack spacing={smallScreen ? 'xs' : 'md'}>
-          <CataloguesFilter
-            value={props.catalogueValue}
-            onChange={props.handleCatalogueChange}
-            disabled={props.disabled}
-          />
+          <CataloguesFilter />
           <Stack spacing={smallScreen ? 4 : 8}>
             <Title order={5}>Оклад</Title>
             <PaymentFilter
               data-elem="salary-from-input"
-              value={props.paymentFrom}
+              value={paymentFrom}
               min={PAYMENT_STEP}
-              handleChange={props.handlePaymentFromChange}
-              disabled={props.disabled}
+              handleChange={setPaymentFrom}
+              disabled={isLoading}
               placeholder="От"
             />
             <PaymentFilter
               data-elem="salary-to-input"
-              value={props.paymentTo}
-              min={props.paymentFrom === '' ? PAYMENT_STEP : props.paymentFrom}
-              handleChange={props.handlePaymentToChange}
-              disabled={props.disabled}
+              value={paymentTo}
+              min={paymentFrom === '' ? PAYMENT_STEP : paymentFrom}
+              handleChange={setPaymentTo}
+              disabled={isLoading}
               placeholder="До"
             />
           </Stack>
-          <ApplyFiltersButton
-            onClick={props.applyFilters}
-            disabled={props.disabled}
-            h={40}
-          >
-            Применить
-          </ApplyFiltersButton>
+          <ApplyFiltersButton h={40}>Применить</ApplyFiltersButton>
         </Stack>
       </Stack>
     </Paper>

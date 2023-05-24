@@ -1,23 +1,27 @@
+import { memo } from 'react';
+
 import { TextInput, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
 import ApplyFiltersButton from '../../Buttons/ApplyFiltersButton';
 import SearchIcon from '@/components/Icons/SearchIcon';
-import { memo } from 'react';
+import { useFilters } from '@/contexts/FiltersContext';
 import useStyles from './styles';
 
-function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
+function KeyWordFilter() {
   const theme = useMantineTheme();
   const { classes } = useStyles();
   const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
+  const { keyword, setKeyword, handleApplyFilters, isLoading } = useFilters();
+
   return (
     <TextInput
       data-elem="search-input"
-      value={value}
-      onChange={onChange}
-      onKeyDown={(e) => e.key === 'Enter' && onSubmit()}
-      disabled={disabled}
+      value={keyword}
+      onChange={(e) => setKeyword(e.currentTarget.value)}
+      onKeyDown={(e) => e.key === 'Enter' && handleApplyFilters()}
+      disabled={isLoading}
       placeholder={
         smallScreen ? 'Название вакансии' : 'Введите название вакансии'
       }
@@ -25,12 +29,7 @@ function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
       w="100%"
       icon={<SearchIcon />}
       rightSection={
-        <ApplyFiltersButton
-          onClick={onSubmit}
-          disabled={disabled}
-          h={32}
-          px="md"
-        >
+        <ApplyFiltersButton h={32} px="md">
           Поиск
         </ApplyFiltersButton>
       }

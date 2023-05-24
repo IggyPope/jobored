@@ -3,6 +3,8 @@ import { MantineProvider } from '@mantine/core';
 import themeOverrides from '@/styles/themeOverrides';
 import MainLayout from '@/components/Layout/MainLayout';
 import { Inter } from 'next/font/google';
+import FiltersContextProvider from '@/contexts/FiltersContext';
+import FavoritesContextProvider from '@/contexts/FavoritesContext';
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -29,9 +31,13 @@ export default function App({ Component, pageProps }) {
         withGlobalStyles
         withNormalizeCSS
       >
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        <FavoritesContextProvider>
+          <FiltersContextProvider>
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+          </FiltersContextProvider>
+        </FavoritesContextProvider>
       </MantineProvider>
     </>
   );

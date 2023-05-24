@@ -2,11 +2,14 @@ import { memo } from 'react';
 import { Button } from '@mantine/core';
 
 import ResetIcon from '@/components/Icons/ResetIcon';
+import { useFilters } from '@/contexts/FiltersContext';
 
-function ResetFiltersButton(props) {
+function ResetFiltersButton() {
+  const { handleResetFilters } = useFilters();
+
   return (
     <Button
-      {...props}
+      onClick={handleResetFilters}
       compact
       variant="white"
       rightIcon={<ResetIcon />}

@@ -6,43 +6,45 @@ import { useDisclosure } from '@mantine/hooks';
 import cataloguesApiService from '@/services/api/catalogues/cataloguesApiService';
 import ChevronDownIcon from '@/components/Icons/ChevronDownIcon';
 import useStyles from './styles';
+import { useFilters } from '@/contexts/FiltersContext';
 
-export default function CataloguesFilter({ value, onChange, disabled }) {
+export default function CataloguesFilter() {
   const theme = useMantineTheme();
   const { classes } = useStyles();
 
+  const { catalogue, setCatalogue, isLoading } = useFilters();
   const [opened, handlers] = useDisclosure(false);
-  const [list, setList] = useState([]);
+  const [cataloguesList, setCataloguesList] = useState([]);
 
   useEffect(() => {
     cataloguesApiService.getAll().then((response) => {
-      const cataloguesList = response.map((item) => ({
+      const list = response.map((item) => ({
         value: item.key.toString(),
         label: item.title_rus,
       }));
-      setList(cataloguesList);
+      setCataloguesList(list);
     });
   }, []);
 
   return (
     <Select
       data-elem="industry-select"
-      value={value}
-      onChange={onChange}
-      disabled={disabled}
+      value={catalogue}
+      onChange={setCatalogue}
+      disabled={isLoading}
+      data={cataloguesList}
+      onDropdownOpen={handlers.open}
+      onDropdownClose={handlers.close}
       label={
         <Title order={5} mb={8} color={theme.black}>
           Отрасль
         </Title>
       }
       placeholder="Выберите отрасль"
-      onDropdownOpen={handlers.open}
-      onDropdownClose={handlers.close}
       searchable
       nothingFound="Ничего не найдено"
       rightSection={<ChevronDownIcon />}
       rightSectionWidth={36}
-      data={list}
       styles={{
         input: classes.input,
         rightSection: {

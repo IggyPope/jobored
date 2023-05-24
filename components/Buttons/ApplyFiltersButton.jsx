@@ -1,13 +1,16 @@
 import { memo } from 'react';
 import { Button } from '@mantine/core';
+import { useFilters } from '@/contexts/FiltersContext';
 
-function ApplyFiltersButton({ onClick, disabled, children, ...otherProps }) {
+function ApplyFiltersButton({ children, ...otherProps }) {
+  const { handleApplyFilters, isLoading } = useFilters();
+
   return (
     <Button
       {...otherProps}
       data-elem="search-button"
-      onClick={onClick}
-      disabled={disabled}
+      onClick={handleApplyFilters}
+      disabled={isLoading}
       fz="xs"
       fw={500}
       styles={(theme) => ({

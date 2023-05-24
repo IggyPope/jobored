@@ -11,7 +11,6 @@ export default function PaymentFilter({
   min,
   ...otherProps
 }) {
-  const theme = useMantineTheme();
   const { classes } = useStyles();
 
   const handlers = useRef();
