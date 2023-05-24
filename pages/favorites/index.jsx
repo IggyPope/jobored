@@ -36,9 +36,14 @@ export default function Favorites() {
       size="md"
       px={smallScreen ? 'xxs' : 'lg'}
       py={smallScreen ? 'sm' : rem(40)}
+      mih="calc(100vh - 84px)"
+      sx={{
+        display: 'flex',
+        alignItems: 'stretch',
+      }}
     >
-      <Stack justify="space-between" spacing="xl">
-        <Stack spacing="sm">
+      <Stack justify="space-between" spacing="sm" w="100%">
+        <Stack spacing={smallScreen ? 'xs' : 'sm'}>
           {!isLoading && vacancies.length === 0 ? (
             <NotFound />
           ) : (
@@ -63,6 +68,7 @@ export default function Favorites() {
                 : 'md'
             }
             position="center"
+            mb={4}
             radius="xs"
             spacing={smallScreen ? 4 : 'xxs'}
             styles={(theme) => ({
