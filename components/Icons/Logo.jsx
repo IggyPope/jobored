@@ -1,5 +1,6 @@
-import { Box, useMantineTheme } from '@mantine/core';
 import { useRouter } from 'next/router';
+
+import { Box, useMantineTheme } from '@mantine/core';
 
 export default function Logo() {
   const theme = useMantineTheme();

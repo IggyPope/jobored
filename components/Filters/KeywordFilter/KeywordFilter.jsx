@@ -3,8 +3,9 @@ import { useMediaQuery } from '@mantine/hooks';
 
 import ApplyFiltersButton from '../../Buttons/ApplyFiltersButton';
 import SearchIcon from '@/components/Icons/SearchIcon';
+import { memo } from 'react';
 
-export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
+function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
   const theme = useMantineTheme();
   const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
@@ -58,3 +59,5 @@ export default function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
     />
   );
 }
+
+export default memo(KeyWordFilter);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { ActionIcon } from '@mantine/core';
 import { useHover } from '@mantine/hooks';
 
@@ -8,7 +8,7 @@ import { useFavorites } from '@/contexts/FavoritesContext';
 
 import StarIcon from '../Icons/StarIcon';
 
-export default function FavoriteButton({ vacancy }) {
+function FavoriteButton({ vacancy }) {
   const { addFavorite, removeFavorite, checkFavorite } = useFavorites();
 
   const [isFavorite, setIsFavorite] = useState(checkFavorite(vacancy.id));
@@ -38,3 +38,5 @@ export default function FavoriteButton({ vacancy }) {
     </ActionIcon>
   );
 }
+
+export default memo(FavoriteButton);

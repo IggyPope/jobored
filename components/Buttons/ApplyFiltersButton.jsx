@@ -1,11 +1,7 @@
+import { memo } from 'react';
 import { Button } from '@mantine/core';
 
-export default function ApplyFiltersButton({
-  onClick,
-  disabled,
-  children,
-  ...otherProps
-}) {
+function ApplyFiltersButton({ onClick, disabled, children, ...otherProps }) {
   return (
     <Button
       {...otherProps}
@@ -30,3 +26,5 @@ export default function ApplyFiltersButton({
     </Button>
   );
 }
+
+export default memo(ApplyFiltersButton);

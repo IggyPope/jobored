@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Link from 'next/link';
 import {
   Flex,
@@ -13,7 +14,7 @@ import FavoriteButton from '@/components/Buttons/FavoriteButton';
 import LocationIcon from '@/components/Icons/LocationIcon';
 import VacancyPayment from '../common/VacancyPayment';
 
-export default function VacancyCard({ vacancy }) {
+function VacancyCard({ vacancy }) {
   const theme = useMantineTheme();
   const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
@@ -80,3 +81,5 @@ export default function VacancyCard({ vacancy }) {
     </Link>
   );
 }
+
+export default memo(VacancyCard);

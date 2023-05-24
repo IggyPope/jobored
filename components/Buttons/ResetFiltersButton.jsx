@@ -1,7 +1,9 @@
+import { memo } from 'react';
 import { Button } from '@mantine/core';
+
 import ResetIcon from '@/components/Icons/ResetIcon';
 
-export default function ResetFiltersButton(props) {
+function ResetFiltersButton(props) {
   return (
     <Button
       {...props}
@@ -33,3 +35,5 @@ export default function ResetFiltersButton(props) {
     </Button>
   );
 }
+
+export default memo(ResetFiltersButton);
