@@ -27,7 +27,8 @@ function VacancyCard({ vacancy }) {
         w="100%"
         withBorder
         sx={(theme) => ({
-          '@media not all and (pointer: coarse)': {
+          // '@media not all and (pointer: coarse)': {
+          '@media (hover: hover) and (pointer: fine)': {
             '&:hover': {
               backgroundColor: theme.colors.blue[0],
             },

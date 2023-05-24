@@ -13,8 +13,11 @@ function ApplyFiltersButton({ onClick, disabled, children, ...otherProps }) {
       styles={(theme) => ({
         root: {
           border: 0,
-          '&:hover': {
-            backgroundColor: theme.colors.blue[3],
+          //need this to disable hover on non-touch devices
+          '@media (hover: hover) and (pointer: fine)': {
+            '&:hover': {
+              backgroundColor: theme.colors.blue[3],
+            },
           },
           '&:active': {
             backgroundColor: theme.colors.blue[5],

@@ -51,8 +51,11 @@ function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
           justifyContent: 'flex-end',
         },
         wrapper: {
-          '&:hover>input': {
-            border: `1px solid ${theme.colors.blue[4]}`,
+          //need this to disable hover on non-touch devices
+          '@media (hover: hover) and (pointer: fine)': {
+            '&:hover>input': {
+              border: `1px solid ${theme.colors.blue[4]}`,
+            },
           },
         },
       })}

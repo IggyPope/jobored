@@ -2,7 +2,6 @@
 
 import { memo, useState } from 'react';
 import { ActionIcon } from '@mantine/core';
-import { useHover } from '@mantine/hooks';
 
 import { useFavorites } from '@/contexts/FavoritesContext';
 
@@ -12,8 +11,6 @@ function FavoriteButton({ vacancy }) {
   const { addFavorite, removeFavorite, checkFavorite } = useFavorites();
 
   const [isFavorite, setIsFavorite] = useState(checkFavorite(vacancy.id));
-
-  const { hovered, ref } = useHover();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -31,10 +28,21 @@ function FavoriteButton({ vacancy }) {
     <ActionIcon
       data-elem={`vacancy-${vacancy.id}-shortlist-button`}
       variant="transparent"
-      ref={ref}
       onClick={(e) => handleClick(e)}
+      sx={(theme) => ({
+        color: isFavorite ? theme.colors.blue[4] : theme.colors.gray[3],
+        //need this to disable hover on non-touch devices
+        '@media (hover: hover) and (pointer: fine)': {
+          '&:hover': {
+            color: theme.colors.blue[4],
+          },
+        },
+        '&[data-with-border]': {
+          border: `1px solid ${theme.colors.gray[1]}`,
+        },
+      })}
     >
-      <StarIcon hovered={hovered} isFavorite={isFavorite} />
+      <StarIcon isFavorite={isFavorite} />
     </ActionIcon>
   );
 }

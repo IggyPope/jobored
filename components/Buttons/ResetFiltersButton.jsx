@@ -19,8 +19,11 @@ function ResetFiltersButton(props) {
           lineHeight: theme.fontSizes.md,
           fontWeight: 500,
           color: theme.colors.gray[3],
-          '&:hover': {
-            color: theme.colors.blue[3],
+          //need this to disable hover on non-touch devices
+          '@media (hover: hover) and (pointer: fine)': {
+            '&:hover': {
+              color: theme.colors.blue[3],
+            },
           },
           '&:active': {
             color: theme.colors.blue[4],
