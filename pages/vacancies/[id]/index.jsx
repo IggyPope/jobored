@@ -10,6 +10,7 @@ import VacancyBody from '@/components/Vacancy/VacancyBody/VacancyBody';
 
 import vacanciesApiService from '@/services/api/vacancies/vacanciesApiService';
 import VacancyBodySkeleton from '@/components/Vacancy/VacancyBody/VacancyBodySkeleton';
+import NotFound from '@/components/NotFound/NotFound';
 
 export default function Vacancy() {
   const theme = useMantineTheme();
@@ -36,17 +37,19 @@ export default function Vacancy() {
       py={smallScreen ? 'sm' : rem(40)}
     >
       <Stack spacing={smallScreen ? 'xs' : 'md'}>
-        {!isLoading && vacancy ? (
+        {!isLoading && vacancy && (
           <>
             <VacancyHead vacancy={vacancy} />
             <VacancyBody vacancy={vacancy} />
           </>
-        ) : (
+        )}
+        {isLoading && (
           <>
             <VacancyHeadSkeleton />
             <VacancyBodySkeleton />
           </>
         )}
+        {!isLoading && !vacancy && <NotFound />}
       </Stack>
     </Container>
   );
