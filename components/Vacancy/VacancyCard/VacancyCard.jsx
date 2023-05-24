@@ -58,7 +58,7 @@ function VacancyCard({ vacancy }) {
               currency={vacancy.currency}
               titleOrder={6}
             />
-            <Text span inline c="gray.4" lh="21px" fz="md">
+            <Text span inline c="gray.4" lh="20px" fz="md">
               •
             </Text>
             <Text span inline fz="sm">

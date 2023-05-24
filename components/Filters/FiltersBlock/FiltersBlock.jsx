@@ -19,7 +19,7 @@ function FiltersBlock() {
   return (
     <Paper
       w={smallScreen ? '100%' : '315px'}
-      p={smallScreen ? 'sm' : 'lg'}
+      p={smallScreen ? 'sm' : 'md'}
       radius="lg"
       withBorder
       sx={(theme) => ({

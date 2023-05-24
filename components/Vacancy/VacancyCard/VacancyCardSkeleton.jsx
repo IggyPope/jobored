@@ -15,8 +15,8 @@ export default function VacancyCardSkeleton() {
     >
       <Stack spacing="xs">
         <Flex direction="row" justify="space-between" align="center">
-          <Skeleton height={25} width="65%" />
-          <Skeleton height={28} circle />
+          <Skeleton height={24} width="65%" />
+          <Skeleton height={24} circle />
         </Flex>
         <Flex
           direction="row"
@@ -25,11 +25,11 @@ export default function VacancyCardSkeleton() {
           gap="xs"
           wrap="wrap"
         >
-          <Skeleton height={21} width="25%" />
-          <Text span inline c="gray.4" lh="21px" fz="md">
+          <Skeleton height={20} width="25%" />
+          <Text span inline c="gray.4" lh="20px" fz="md">
             •
           </Text>
-          <Skeleton height={21} width="25%" />
+          <Skeleton height={20} width="25%" />
         </Flex>
         <Flex
           direction="row"

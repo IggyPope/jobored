@@ -29,7 +29,12 @@ function FavoriteButton({ vacancy }) {
       data-elem={`vacancy-${vacancy.id}-shortlist-button`}
       variant="transparent"
       onClick={(e) => handleClick(e)}
+      mih={24}
+      h={24}
+      miw={24}
+      w={24}
       sx={(theme) => ({
+        border: 0,
         color: isFavorite ? theme.colors.blue[4] : theme.colors.gray[3],
         //need this to disable hover on non-touch devices
         '@media (hover: hover) and (pointer: fine)': {
