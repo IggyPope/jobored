@@ -4,9 +4,11 @@ import { useMediaQuery } from '@mantine/hooks';
 import ApplyFiltersButton from '../../Buttons/ApplyFiltersButton';
 import SearchIcon from '@/components/Icons/SearchIcon';
 import { memo } from 'react';
+import useStyles from './styles';
 
 function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
   const theme = useMantineTheme();
+  const { classes } = useStyles();
   const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
   return (
@@ -33,31 +35,11 @@ function KeyWordFilter({ value, onChange, onSubmit, disabled }) {
         </ApplyFiltersButton>
       }
       rightSectionWidth={95}
-      styles={(theme) => ({
-        input: {
-          fontSize: '14px',
-          height: '48px',
-          padding: '8px 12px',
-          border: `1px solid ${theme.colors.gray[1]}`,
-          '&::placeholder': {
-            color: theme.colors.gray[3],
-          },
-        },
-        icon: {
-          color: theme.colors.gray[3],
-        },
-        rightSection: {
-          paddingRight: '12px',
-          justifyContent: 'flex-end',
-        },
-        wrapper: {
-          //need this to disable hover on non-touch devices
-          '@media (hover: hover) and (pointer: fine)': {
-            '&:hover>input': {
-              border: `1px solid ${theme.colors.blue[4]}`,
-            },
-          },
-        },
+      styles={() => ({
+        input: classes.input,
+        icon: classes.icon,
+        rightSection: classes.rightSection,
+        wrapper: classes.wrapper,
       })}
     />
   );

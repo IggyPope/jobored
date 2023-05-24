@@ -5,9 +5,12 @@ import { Select, Title, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import cataloguesApiService from '@/services/api/catalogues/cataloguesApiService';
 import ChevronDownIcon from '@/components/Icons/ChevronDownIcon';
+import useStyles from './styles';
 
 export default function CataloguesFilter({ value, onChange, disabled }) {
   const theme = useMantineTheme();
+  const { classes } = useStyles();
+
   const [opened, handlers] = useDisclosure(false);
   const [list, setList] = useState([]);
 
@@ -41,38 +44,15 @@ export default function CataloguesFilter({ value, onChange, disabled }) {
       rightSectionWidth={36}
       data={list}
       styles={{
-        input: {
-          border: `1px solid ${theme.colors.gray[2]}`,
-          cursor: 'pointer',
-          fontSize: theme.fontSizes.xs,
-          fontWeight: 400,
-          '&:hover': {
-            border: `1px solid ${theme.colors.blue[4]}`,
-          },
-          '&::placeholder': {
-            color: theme.colors.gray[3],
-          },
-        },
+        input: classes.input,
         rightSection: {
           transform: opened ? 'rotate(180deg)' : 'rotate(0deg)',
           color: opened ? theme.colors.blue[4] : theme.colors.gray[3],
           pointerEvents: 'none',
         },
-        item: {
-          fontSize: theme.fontSizes.xs,
-          fontWeight: 400,
-          padding: '8px 12px',
-          whiteSpace: 'normal',
-          '&:hover': {
-            backgroundColor: theme.colors.blue[0],
-          },
-        },
-        itemsWrapper: {
-          width: '100%',
-        },
-        dropdown: {
-          width: '1px',
-        },
+        item: classes.item,
+        itemsWrapper: classes.itemsWrapper,
+        dropdown: classes.dropdown,
       }}
     />
   );

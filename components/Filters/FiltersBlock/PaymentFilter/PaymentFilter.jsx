@@ -3,6 +3,7 @@ import { NumberInput, Stack, useMantineTheme } from '@mantine/core';
 
 import SmallShevronDownIcon from '@/components/Icons/SmallChevronDownIcon';
 import { PAYMENT_STEP } from '@/constants/constants';
+import useStyles from './styles';
 
 export default function PaymentFilter({
   value,
@@ -11,6 +12,7 @@ export default function PaymentFilter({
   ...otherProps
 }) {
   const theme = useMantineTheme();
+  const { classes } = useStyles();
 
   const handlers = useRef();
 
@@ -40,24 +42,9 @@ export default function PaymentFilter({
         </Stack>
       }
       styles={{
-        rightSection: {
-          width: '30px',
-          '&>div>:first-of-type': {
-            transform: 'rotate(180deg)',
-          },
-        },
-        wrapper: {
-          '&:hover>input': {
-            border: `1px solid ${theme.colors.blue[4]}`,
-          },
-        },
-        input: {
-          border: `1px solid ${theme.colors.gray[2]}`,
-          fontSize: theme.fontSizes.xs,
-          '&::placeholder': {
-            color: theme.colors.gray[3],
-          },
-        },
+        rightSection: classes.rightSection,
+        wrapper: classes.wrapper,
+        input: classes.input,
       }}
     />
   );
