@@ -28,15 +28,15 @@ export default function VacancyHead({ vacancy }) {
         },
       })}
     >
-      <Stack spacing={smallScreen ? 'xs' : 'sm'}>
+      <Stack spacing="sm">
         <Flex direction="row" justify="space-between" align="flex-start">
           <Title order={1}>{vacancy.profession}</Title>
           <FavoriteButton vacancy={vacancy} />
         </Flex>
         <Flex
-          direction="row"
+          direction={smallScreen ? 'column' : 'row'}
           justify="flex-start"
-          align="center"
+          align={smallScreen ? 'flex-start' : 'center'}
           gap="xs"
           wrap="wrap"
         >
@@ -46,7 +46,14 @@ export default function VacancyHead({ vacancy }) {
             currency={vacancy.currency}
             titleOrder={3}
           />
-          <Text span inline c="gray.4" lh="21px" fz={smallScreen ? 'sm' : 'md'}>
+          <Text
+            span
+            inline
+            c="gray.4"
+            lh="21px"
+            fz="md"
+            display={smallScreen ? 'none' : 'initial'}
+          >
             •
           </Text>
           <Text span inline fz={smallScreen ? 'sm' : 'md'}>
