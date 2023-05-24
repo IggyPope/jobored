@@ -54,8 +54,13 @@ export default function Header() {
         padding="md"
         size="90%"
         position="right"
+        closeButtonProps={{
+          size: 'lg',
+          mr: 'xxs',
+          mt: '6px',
+        }}
       >
-        <Stack spacing="0">
+        <Stack spacing={4}>
           {routes.map((route) => {
             return (
               <Link

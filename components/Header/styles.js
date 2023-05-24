@@ -17,7 +17,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   navbar: {
-    [theme.fn.smallerThan('xs')]: {
+    [theme.fn.smallerThan('sm')]: {
       display: 'none',
     },
   },
@@ -35,6 +35,12 @@ const useStyles = createStyles((theme) => ({
   drawerLink: {
     fontSize: theme.fontSizes.md,
     padding: rem(10),
+    //need this to disable hover on non-touch devices
+    '@media (hover: hover) and (pointer: fine)': {
+      '&:hover': {
+        backgroundColor: theme.colors.gray[0],
+      },
+    },
   },
 
   activeDrawerLink: {
@@ -46,7 +52,7 @@ const useStyles = createStyles((theme) => ({
   burger: {
     display: 'none',
 
-    [theme.fn.smallerThan('xs')]: {
+    [theme.fn.smallerThan('sm')]: {
       display: 'block',
     },
   },
