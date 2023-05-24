@@ -8,7 +8,7 @@ export default function Custom404() {
   const smallScreen = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
 
   return (
-    <Container py={smallScreen ? 'sm' : rem(40)}>
+    <Container py={smallScreen ? 'xs' : rem(40)}>
       <NotFound />
     </Container>
   );

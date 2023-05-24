@@ -16,7 +16,9 @@ export default function NotFound() {
   return (
     <Stack spacing={32} align="center" mt={smallScreen ? 40 : 80}>
       <NotFoundIcon />
-      <Title order={smallScreen ? 3 : 2}>Упс, здесь еще ничего нет!</Title>
+      <Title order={2} sx={smallScreen && { fontSize: '20px' }}>
+        Упс, здесь еще ничего нет!
+      </Title>
       <Button
         onClick={() => push('/vacancies')}
         variant="light"
