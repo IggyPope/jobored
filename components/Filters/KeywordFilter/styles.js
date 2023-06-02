@@ -6,6 +6,7 @@ const useStyles = createStyles((theme) => ({
     height: '48px',
     padding: '8px 12px',
     border: `1px solid ${theme.colors.gray[1]}`,
+    caretColor: theme.colors.blue[4],
     '&::placeholder': {
       color: theme.colors.gray[3],
     },

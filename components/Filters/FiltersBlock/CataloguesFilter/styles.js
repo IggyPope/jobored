@@ -6,6 +6,7 @@ const useStyles = createStyles((theme) => ({
     cursor: 'pointer',
     fontSize: theme.fontSizes.xs,
     fontWeight: 400,
+    caretColor: theme.colors.blue[4],
     '&:hover': {
       border: `1px solid ${theme.colors.blue[4]}`,
     },

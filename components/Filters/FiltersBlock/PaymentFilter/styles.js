@@ -15,6 +15,7 @@ const useStyles = createStyles((theme) => ({
   input: {
     border: `1px solid ${theme.colors.gray[2]}`,
     fontSize: theme.fontSizes.xs,
+    caretColor: theme.colors.blue[4],
     '&::placeholder': {
       color: theme.colors.gray[3],
     },
